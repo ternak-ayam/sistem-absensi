@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('login', [\App\Http\Controllers\Api\V1\Auth\LoginController::class, 'login']);
+
+Route::get('/admin/marketing', [\App\Http\Controllers\Api\V1\Marketing\MarketingController::class, 'index']);
+Route::post('/admin/marketing', [\App\Http\Controllers\Api\V1\Marketing\MarketingController::class, 'store']);
