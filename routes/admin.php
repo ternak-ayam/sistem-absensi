@@ -5,6 +5,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 
 Route::group([], function () {
-   Route::get('dashboard', [DashboardController::class, 'index']);
+   Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
    Route::resource('user', UserController::class)->only('index');
 });
