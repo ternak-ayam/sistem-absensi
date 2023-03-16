@@ -19,7 +19,7 @@
     <x-section>
         <x-slot name="title">
         </x-slot>
-        
+
         <x-slot name="header">
             <h4>Data Users</h4>
             <div class="card-header-form row">
@@ -50,6 +50,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Roles</th>
                             <th style="width:150px">Action</th>
                         </tr>
                     </thead>
@@ -80,7 +81,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="3">
+                            <td colspan="5">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>
