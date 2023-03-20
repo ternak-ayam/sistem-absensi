@@ -17,13 +17,36 @@
 
 @yield('js')
 <script>
-    $(function() {
+    $(function () {
         $('.loading').hide();
-
-        $('form').submit(function(e) {
+        $('form').submit(function (e) {
             $('.loading').show();
         })
     })
 
-    var token = $('meta[name="csrf-token"]').attr('content')
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('[name=password]');
+    const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
+    const passwordConfirmation = document.querySelector('#passwordConfirmation');
+
+    togglePassword?.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        if(this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
+
+    togglePasswordConfirmation?.addEventListener('click', function (e) {
+        const type = passwordConfirmation.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordConfirmation.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+    });
 </script>
+
