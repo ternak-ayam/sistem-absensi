@@ -17,7 +17,7 @@
                 onclick="document.querySelector('#logout_form').submit()">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
-            {{-- <form id="logout_form" action="{{ route('logout') }}">@csrf</form> --}}
+            <form action="{{ route('admin.logout') }}" method="POST" id="logout_form">@csrf</form>
         </div>
     </li>
 </ul>

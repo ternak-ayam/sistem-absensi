@@ -48,9 +48,11 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Roles</th>
+                            <th>ID Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Pemilik</th>
+                            <th>Berat</th>
+                            <th>Tanggal Masuk</th>
                             <th style="width:150px">Action</th>
                         </tr>
                         </thead>
@@ -58,6 +60,8 @@
                         @forelse([] as $user)
                             <tr>
                                 <td>{{ $loop->index + $users->firstItem() }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
@@ -81,7 +85,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">
+                                <td colspan="7">
                                     <p class="text-center"><em>There is no record.</em></p>
                                 </td>
                             </tr>
