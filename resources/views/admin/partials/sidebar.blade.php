@@ -36,6 +36,11 @@
                         <i class="far fa-circle"></i> Kelola Barang
                     </a>
                 </li>
+                <li {{ is_nav_active('laporan') }}>
+                    <a class="nav-link" href="#">
+                        <i class="far fa-circle"></i> Laporan Barang
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

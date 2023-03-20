@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Barang Masuk')
+@section('title', 'Barang Keluar')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
     <x-content>
         <x-slot name="modul">
-            <h1>Barang Masuk</h1>
+            <h1>Barang Keluar</h1>
         </x-slot>
 
         <x-section>
@@ -21,7 +21,7 @@
             </x-slot>
 
             <x-slot name="header">
-                <h4>Data Barang Masuk</h4>
+                <h4>Data Barang Keluar</h4>
                 <div class="card-header-form row">
                     <div>
                         <form>
@@ -35,7 +35,7 @@
                         </form>
                     </div>
                     <div class="ml-2">
-                        <a href="#" class="btn btn-sm btn-primary">
+                        <a href="{{ route('admin.barang.keluar.create') }}" class="btn btn-sm btn-primary">
                             Tambah Data <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -52,7 +52,7 @@
                             <th>Nama Barang</th>
                             <th>Pemilik</th>
                             <th>Berat</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
                             <th style="width:150px">Action</th>
                         </tr>
                         </thead>
@@ -61,8 +61,9 @@
                             <tr>
                                 <td>{{ $loop->index + $users->firstItem() }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     <a href="#"

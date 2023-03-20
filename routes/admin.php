@@ -15,7 +15,10 @@ Route::group([], function () {
         Route::resource('user', UserController::class)->only('index');
         Route::prefix('barang')->as('barang.')->group(function () {
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
+            Route::get('masuk/create', [\App\Http\Controllers\BarangMasukController::class, 'create'])->name('masuk.create');
+
             Route::get('keluar', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
+            Route::get('keluar/create', [\App\Http\Controllers\BarangKeluarController::class, 'create'])->name('keluar.create');
         });
     });
 });
