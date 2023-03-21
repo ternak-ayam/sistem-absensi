@@ -49,6 +49,7 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Roles</th>
                             <th style="width:150px">Action</th>
@@ -59,6 +60,7 @@
                         <tr>
                             <td>{{ $loop->index + $users->firstItem() }}</td>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                                 <a href="#"
@@ -81,7 +83,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>

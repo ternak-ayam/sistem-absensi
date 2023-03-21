@@ -19,6 +19,8 @@ Route::group([], function () {
 
             Route::get('keluar', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
             Route::get('keluar/create', [\App\Http\Controllers\BarangKeluarController::class, 'create'])->name('keluar.create');
+
+            Route::get('laporan', [\App\Http\Controllers\LaporanBarangController::class, 'index'])->name('laporan.index');
         });
     });
 });

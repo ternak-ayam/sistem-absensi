@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li {{ is_nav_active('laporan') }}>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.barang.laporan.index') }}">
                         <i class="far fa-circle"></i> Laporan Barang
                     </a>
                 </li>

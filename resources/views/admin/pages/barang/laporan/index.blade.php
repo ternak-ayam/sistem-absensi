@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Barang Masuk')
+@section('title', 'Laporan Barang')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
     <x-content>
         <x-slot name="modul">
-            <h1>Barang Masuk</h1>
+            <h1>Laporan Barang</h1>
         </x-slot>
 
         <x-section>
@@ -21,22 +21,20 @@
             </x-slot>
 
             <x-slot name="header">
-                <h4>Data Barang Masuk</h4>
+                <h4>Laporan Barang</h4>
                 <div class="card-header-form row">
                     <div>
                         <form>
                             <div class="input-group">
-                                <input type="text" name="search" id="search" class="form-control" placeholder="Pencarian"
-                                       value="{{ Request::input('search') ?? ''}}">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                </div>
+                                <select type="text" name="filter" id="filter" class="form-control">
+                                    <option value="Pilih Bulan">Pilih Bulan</option>
+                                </select>
                             </div>
                         </form>
                     </div>
                     <div class="ml-2">
-                        <a href="{{ route('admin.barang.masuk.create') }}" class="btn btn-sm btn-primary">
-                            Tambah Data <i class="fas fa-plus"></i>
+                        <a href="#" class="btn btn-primary">
+                            Export Data <i class="fas fa-download"></i>
                         </a>
                     </div>
                 </div>

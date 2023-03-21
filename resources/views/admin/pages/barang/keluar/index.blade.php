@@ -48,10 +48,10 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Barang</th>
+                            <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th>Pemilik</th>
-                            <th>Berat</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
                             <th>Tanggal Keluar</th>
                             <th style="width:150px">Action</th>
                         </tr>
