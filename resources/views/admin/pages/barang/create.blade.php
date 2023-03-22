@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Barang Masuk')
+@section('title', 'Tambah Barang')
 
 @section('css')
 
@@ -13,15 +13,15 @@
 @section('content')
     <x-content>
         <x-slot name="modul">
-            @include('admin.partials.back-with-title', ['title' => 'Tambah Barang Masuk'])
+            @include('admin.partials.back-with-title', ['title' => 'Tambah Barang'])
         </x-slot>
         <div>
-            <form action="" enctype="multipart/form-data" method="post"
+            <form action="{{ route('admin.barang.store') }}" enctype="multipart/form-data" method="post"
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
                 <div class="row">
                     <div class="col-md-4 col-sm-12 my-1">
-                        @include('admin.pages.barang.masuk.partials.image-upload', ['imageUrl' => 'https://i.ibb.co/1JmC0RD/500x250.png'])
+                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => 'https://i.ibb.co/1JmC0RD/500x250.png'])
                     </div>
                     <div class="col-md-8 col-sm-12 my-1">
                         <div class="card">
@@ -32,8 +32,8 @@
                                 <div class="section-title mt-0">Informasi Dasar</div>
                                 <div class="form-group">
                                     <label>Kode Barang</label>
-                                    <input type="text" class="form-control" name="id_barang" value="{{ old('id_barang') }}"
-                                           required>
+                                    <input type="text" class="form-control" name="code" value="{{ $code }}"
+                                           required readonly>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
@@ -44,20 +44,28 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Harga</label>
-                                    <input type="text" class="form-control" name="harga"
-                                           value="{{ old('harga') }}" required>
+                                    <input type="text" class="form-control" name="price"
+                                           value="{{ old('price') }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah</label>
-                                    <input type="number" class="form-control" name="jumlah"
-                                           value="{{ old('jumlah') }}" required>
+                                    <input type="number" class="form-control" name="quantity"
+                                           value="{{ old('quantity') }}" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipe</label>
+                                    <select class="form-control" name="type" required>
+                                        <option value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
+                                        <option value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
+                                    </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Masuk</label>
-                                    <input type="date" class="form-control" name="incoming_date"
-                                           value="{{ old('incoming_date') }}" required>
+                                    <input type="date" class="form-control" name="date"
+                                           value="{{ old('date') }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>

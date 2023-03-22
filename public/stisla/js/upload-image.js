@@ -1,4 +1,4 @@
-const imageInputFile = document.getElementById("photo");
+const imageInputFile = document.getElementById("image");
 const imageView      = document.getElementById("image-view");
 
 imageInputFile.addEventListener("change", (e) => {

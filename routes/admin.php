@@ -21,6 +21,10 @@ Route::group([], function () {
         Route::get('user/{admin}/delete', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::prefix('barang')->as('barang.')->group(function () {
+            Route::get('/kelola', [\App\Http\Controllers\BarangController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\BarangController::class, 'create'])->name('create');
+            Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
+
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
             Route::get('masuk/create', [\App\Http\Controllers\BarangMasukController::class, 'create'])->name('masuk.create');
 

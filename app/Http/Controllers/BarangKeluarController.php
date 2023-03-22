@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BarangKeluarController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.barang.keluar.index');
-    }
+        $products = Product::where([['name', 'like', '%'.\request()->get('search').'%'], ['type', Product::KELUAR]])->orderby('id', 'DESC')->paginate(10);
 
-    public function create()
-    {
-        return view('admin.pages.barang.keluar.create');
+        return view('admin.pages.barang.keluar.index', [
+            'products' => $products
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Barang Keluar')
+@section('title', 'Kelola Barang')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
     <x-content>
         <x-slot name="modul">
-            <h1>Barang Keluar</h1>
+            <h1>Kelola Barang</h1>
         </x-slot>
 
         <x-section>
@@ -21,7 +21,7 @@
             </x-slot>
 
             <x-slot name="header">
-                <h4>Data Barang Keluar</h4>
+                <h4>Data Kelola Barang</h4>
                 <div class="card-header-form row">
                     <div>
                         <form>
@@ -34,12 +34,17 @@
                             </div>
                         </form>
                     </div>
+                    <div class="ml-2">
+                        <a href="{{ route('admin.barang.create') }}" class="btn btn-sm btn-primary">
+                            Tambah Barang <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
                 </div>
             </x-slot>
 
             <x-slot name="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered  table-md">
+                    <table class="table table-bordered table-md">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -47,7 +52,9 @@
                             <th>Nama Barang</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
-                            <th>Tanggal Keluar</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Tipe</th>
+                            <th style="width:150px">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,10 +66,23 @@
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>
+                                <td>{{ $product->getType() }}</td>
+                                <td>
+                                    <a href="#"
+                                       class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Edit">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:;" data-url="#"
+                                       data-id="{{ $product->id }}" data-redirect="#"
+                                       class="btn btn-sm btn-danger delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6">
+                                <td colspan="8">
                                     <p class="text-center"><em>There is no record.</em></p>
                                 </td>
                             </tr>

@@ -7,13 +7,13 @@
             <img style="height: 250px; object-fit: cover" class="w-100 rounded-lg" id="image-view"
                  src="{{ $imageUrl }}" alt="/">
         </div>
-        <input type="file" accept="image/png, image/jpg, image/jpeg" class="d-none form-control" name="photo"
-               id="photo">
+        <input type="file" accept="image/png, image/jpg, image/jpeg" class="d-none form-control" name="image"
+               id="image">
         <div class="mt-2">
-            <label for="photo" class="btn btn-primary w-100 cursor-pointer">Upload Gambar Barang</label>
+            <label for="image" class="btn btn-primary w-100 cursor-pointer">Upload Gambar Barang</label>
         </div>
         <div class="mt-2">
-            <p class="text-small mb-0">Besar file: maksimum 10.000.000 bytes (10 Megabytes). Ekstensi file yang
+            <p class="text-small mb-0">Besar file: maksimum 2 Megabytes. Ekstensi file yang
                 diperbolehkan: .JPG .JPEG .PNG
             </p>
             <div class="invalid-feedback"></div>

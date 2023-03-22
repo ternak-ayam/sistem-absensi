@@ -34,11 +34,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="ml-2">
-                        <a href="{{ route('admin.barang.masuk.create') }}" class="btn btn-sm btn-primary">
-                            Tambah Data <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
                 </div>
             </x-slot>
 
@@ -53,39 +48,21 @@
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Tanggal Masuk</th>
-                            <th style="width:150px">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse([] as $user)
+                        @forelse($products as $product)
                             <tr>
-                                <td>{{ $loop->index + $users->firstItem() }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <a href="#"
-                                       class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Edit">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a href="#"
-                                       class="btn btn-icon btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-                                       title="" data-original-title="Detail">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-
-                                    <a href="javascript:;" data-url="#"
-                                       data-id="{{ $user->id }}" data-redirect="#"
-                                       class="btn btn-sm btn-danger delete">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </td>
+                                <td>{{ $loop->index + $products->firstItem() }}</td>
+                                <td>{{ $product->code }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ formatRupiah($product->price) }}</td>
+                                <td>{{ $product->quantity }}</td>
+                                <td>{{ $product->date->format('F j, Y') }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7">
+                                <td colspan="6">
                                     <p class="text-center"><em>There is no record.</em></p>
                                 </td>
                             </tr>
@@ -96,7 +73,7 @@
             </x-slot>
 
             <x-slot name="footer">
-{{--                {{ $users->onEachSide(2)->appends($_GET)->links('admin.partials.pagination') }}--}}
+                {{ $products->onEachSide(2)->appends($_GET)->links('admin.partials.pagination') }}
             </x-slot>
         </x-section>
 

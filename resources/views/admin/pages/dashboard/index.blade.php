@@ -13,14 +13,14 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis'],
+                labels: [@foreach ($dates as $date) "{{ $date }}", @endforeach],
                 datasets: [{
                     label: 'Barang Masuk',
-                    data: [0, 100, 300, 400],
+                    data: [@foreach ($productInCount as $productIn) "{{ $productIn }}", @endforeach],
                     borderWidth: 1
                 }, {
                     label: 'Barang Keluar',
-                    data: [0, 100, 300, 400],
+                    data: [@foreach ($productOutCount as $productOut) "{{ $productOut }}", @endforeach],
                     borderWidth: 1
                 }]
             },
@@ -53,7 +53,7 @@
                                 <h4>Total Pegawai</h4>
                             </div>
                             <div class="card-body">
-                                0
+                                {{ $employees }}
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                                 <h4>Barang Keluar</h4>
                             </div>
                             <div class="card-body">
-                                0
+                                {{ $outProducts }}
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 <h4>Barang Masuk</h4>
                             </div>
                             <div class="card-body">
-                                0
+                                {{ $inProducts }}
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 <h4>Total Barang</h4>
                             </div>
                             <div class="card-body">
-                                0
+                                {{ $totalProducts }}
                             </div>
                         </div>
                     </div>
@@ -130,21 +130,23 @@
                 <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Aktivitas Terakhir</h4>
+                            <h4>Riwayat Barang</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
+                                @foreach($products as $product)
                                 <li class="media">
                                     <div class="media-body">
                                         <div
-                                            class="float-right text-primary">a hour ago</div>
-                                        <div class="media-title">#12536543434</div>
-                                        <span class="text-small text-muted">...menambahkan barang</span>
+                                            class="float-right text-primary">{{ $product->created_at->diffForHumans() }}</div>
+                                        <div class="media-title">#{{ $product->code }}</div>
+                                        <span class="text-small text-muted">{{ $product->name }}</span>
                                         <br>
                                         <div
-                                            class="badge badge-success text-capitalize">Barang Masuk</div>
+                                            class="badge badge-success text-capitalize">{{ $product->getType() }}</div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
                             <div class="text-center pt-1 pb-1">
                                 <a href=""
