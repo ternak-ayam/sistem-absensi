@@ -46,7 +46,13 @@
     togglePasswordConfirmation?.addEventListener('click', function (e) {
         const type = passwordConfirmation.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordConfirmation.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
+        if(this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
     });
 </script>
 

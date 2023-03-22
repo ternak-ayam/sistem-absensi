@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <div class="ml-2">
-                    <a href="#" class="btn btn-sm btn-primary">
+                    <a href="{{ route('admin.user.create') }}" class="btn btn-sm btn-primary">
                         Tambah Data <i class="fas fa-plus"></i>
                     </a>
                 </div>
@@ -62,22 +62,18 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->role }}</td>
                             <td>
-                                <a href="#"
+                                <a href="{{ route('admin.user.edit', $user->id) }}"
                                     class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
                                     data-placement="top" title="" data-original-title="Edit">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="#"
-                                    class="btn btn-icon btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-                                    title="" data-original-title="Detail">
-                                    <i class="fas fa-info-circle"></i>
-                                </a>
 
-                                <a href="javascript:;" data-url="#"
+                                <a href="{{ route('admin.user.destroy', $user->id) }}" data-url="#"
                                     data-id="{{ $user->id }}" data-redirect="#"
                                     class="btn btn-sm btn-danger delete">
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

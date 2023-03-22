@@ -12,7 +12,14 @@ Route::group([], function () {
         Route::post('logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('user', UserController::class)->only('index');
+
+        Route::get('user', [UserController::class, 'index'])->name('user.index');
+        Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('user', [UserController::class, 'store'])->name('user.store');
+        Route::put('user/{admin}', [UserController::class, 'update'])->name('user.update');
+        Route::get('user/{admin}/edit', [UserController::class, 'edit'])->name('user.edit');
+        Route::get('user/{admin}/delete', [UserController::class, 'destroy'])->name('user.destroy');
+
         Route::prefix('barang')->as('barang.')->group(function () {
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
             Route::get('masuk/create', [\App\Http\Controllers\BarangMasukController::class, 'create'])->name('masuk.create');

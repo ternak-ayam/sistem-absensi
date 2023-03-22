@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes, HashPassword, HandleUpload;
+    use HasApiTokens, Notifiable, SoftDeletes, HashPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -49,5 +49,6 @@ class Admin extends Authenticatable
     ];
 
     const ADMIN = "ADMIN";
-    const MARKETING = "MARKETING";
+    const PEGAWAI = "PEGAWAI";
+    const OWNER = "OWNER";
 }
