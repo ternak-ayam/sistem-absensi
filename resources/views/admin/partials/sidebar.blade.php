@@ -23,6 +23,7 @@
                 <i class="fas fa-box"></i> <span>Barang</span>
             </a>
             <ul class="dropdown-menu">
+                @canany(['admin', 'pegawai'])
                 <li {{ is_nav_active('masuk') }}>
                     <a class="nav-link" href="{{ route('admin.barang.masuk.index') }}">
                         <i class="far fa-circle"></i> Barang Masuk
@@ -38,6 +39,7 @@
                         <i class="far fa-circle"></i> Kelola Barang
                     </a>
                 </li>
+                @endcanany
                 <li {{ is_nav_active('laporan') }}>
                     <a class="nav-link" href="{{ route('admin.barang.laporan.index') }}">
                         <i class="far fa-circle"></i> Laporan Barang

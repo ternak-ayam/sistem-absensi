@@ -68,12 +68,12 @@
                                 <td>{{ $product->date->format('F j, Y') }}</td>
                                 <td>{{ $product->getType() }}</td>
                                 <td>
-                                    <a href="#"
+                                    <a href="{{ route('admin.barang.edit', $product->id) }}"
                                        class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
                                        data-placement="top" title="" data-original-title="Edit">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="javascript:;" data-url="#"
+                                    <a href="{{ route('admin.barang.destroy', $product->id) }}" data-url="#"
                                        data-id="{{ $product->id }}" data-redirect="#"
                                        class="btn btn-sm btn-danger delete">
                                         <i class="fas fa-trash"></i>

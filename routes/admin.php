@@ -13,23 +13,28 @@ Route::group([], function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('user', [UserController::class, 'index'])->name('user.index');
-        Route::get('user/create', [UserController::class, 'create'])->name('user.create');
-        Route::post('user', [UserController::class, 'store'])->name('user.store');
-        Route::put('user/{admin}', [UserController::class, 'update'])->name('user.update');
-        Route::get('user/{admin}/edit', [UserController::class, 'edit'])->name('user.edit');
-        Route::get('user/{admin}/delete', [UserController::class, 'destroy'])->name('user.destroy');
+        Route::prefix('user')->as('user.')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('index');
+            Route::get('create', [UserController::class, 'create'])->name('create');
+            Route::post('/', [UserController::class, 'store'])->name('store');
+            Route::put('{admin}', [UserController::class, 'update'])->name('update');
+            Route::get('{admin}/edit', [UserController::class, 'edit'])->name('edit');
+            Route::get('{admin}/delete', [UserController::class, 'destroy'])->name('destroy');
+        });
 
         Route::prefix('barang')->as('barang.')->group(function () {
-            Route::get('/kelola', [\App\Http\Controllers\BarangController::class, 'index'])->name('index');
-            Route::get('/create', [\App\Http\Controllers\BarangController::class, 'create'])->name('create');
-            Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
+            Route::prefix('kelola')->group(function () {
+                Route::get('/', [\App\Http\Controllers\BarangController::class, 'index'])->name('index');
+                Route::get('create', [\App\Http\Controllers\BarangController::class, 'create'])->name('create');
+                Route::get('{product}/edit', [\App\Http\Controllers\BarangController::class, 'edit'])->name('edit');
+                Route::get('{product}/delete', [\App\Http\Controllers\BarangController::class, 'destroy'])->name('destroy');
+                Route::get('export', [\App\Http\Controllers\BarangController::class, 'export'])->name('export');
+                Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
+                Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
+            });
 
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
-            Route::get('masuk/create', [\App\Http\Controllers\BarangMasukController::class, 'create'])->name('masuk.create');
-
             Route::get('keluar', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
-            Route::get('keluar/create', [\App\Http\Controllers\BarangKeluarController::class, 'create'])->name('keluar.create');
 
             Route::get('laporan', [\App\Http\Controllers\LaporanBarangController::class, 'index'])->name('laporan.index');
         });

@@ -31,7 +31,7 @@ class DashboardController extends Controller
             $productOutCount[] = Product::where('type', Product::KELUAR)->whereDate('created_at', $date)->count();
 
             $datesCount++;
-        } while($datesCount <= 7);
+        } while($datesCount < 7);
 
         return view('admin.pages.dashboard.index',
             compact('totalProducts', 'outProducts',
