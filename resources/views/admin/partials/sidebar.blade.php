@@ -1,9 +1,13 @@
 <aside id="sidebar-wrapper">
-    <div class="sidebar-brand">
-        <a href="#">Laravel</a>
+    <div class="sidebar-brand mb-5">
+        <a href="{{ url('/') }}">
+            <img width="120" src="{{ asset('assets/images/logo/pao.png') }}" alt="">
+        </a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="#">LVL</a>
+        <a href="{{ url('/') }}">
+            <img width="40" src="{{ asset('assets/images/logo/pao.png') }}" alt="">
+        </a>
     </div>
     <ul class="sidebar-menu">
         <li {{ is_nav_active('dashboard') }}>
