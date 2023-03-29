@@ -43,6 +43,11 @@
                         <i class="far fa-circle"></i> Kelola Barang
                     </a>
                 </li>
+                    <li {{ is_nav_active('return') }}>
+                        <a class="nav-link" href="{{ route('admin.barang.return.index') }}">
+                            <i class="far fa-circle"></i> Return Barang
+                        </a>
+                    </li>
                 @endcanany
                 <li {{ is_nav_active('laporan') }}>
                     <a class="nav-link" href="{{ route('admin.barang.laporan.index') }}">

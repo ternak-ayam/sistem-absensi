@@ -33,6 +33,11 @@ Route::group([], function () {
                 Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
             });
 
+            Route::prefix('return')->as('return.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\ReturnBarangController::class, 'index'])->name('index');
+                Route::get('/{product}', [\App\Http\Controllers\ReturnBarangController::class, 'return'])->name('update');
+            });
+
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
             Route::get('keluar', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
 

@@ -60,6 +60,7 @@
                                     <select class="form-control" name="type" required>
                                         <option @if($product->type == \App\Models\Product::MASUK) selected @endif value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
                                         <option @if($product->type == \App\Models\Product::KELUAR) selected @endif value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
+                                        <option @if($product->type == \App\Models\Product::RETURN) selected @endif value="{{ \App\Models\Product::RETURN }}">Barang Return</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>

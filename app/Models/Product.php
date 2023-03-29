@@ -22,14 +22,16 @@ class Product extends Model
 
     const MASUK  = "MASUK";
     const KELUAR = "KELUAR";
+    const RETURN = "RETURN";
 
     protected $dates = ['date'];
 
     public function getType()
     {
         if($this->type == self::MASUK) return 'Barang Masuk';
+        if($this->type == self::RETURN) return 'Barang Return';
 
-        return 'Barang keluar';
+        return 'Barang Keluar';
     }
 
     public function imageAttribute(): string
