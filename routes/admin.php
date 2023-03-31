@@ -33,15 +33,19 @@ Route::group([], function () {
                 Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
             });
 
-            Route::prefix('return')->as('return.')->group(function () {
+            Route::prefix('retur')->as('return.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\ReturnBarangController::class, 'index'])->name('index');
-                Route::get('/{product}', [\App\Http\Controllers\ReturnBarangController::class, 'return'])->name('update');
+                Route::get('/{product}/edit', [\App\Http\Controllers\ReturnBarangController::class, 'edit'])->name('edit');
+                Route::put('/{product}', [\App\Http\Controllers\ReturnBarangController::class, 'update'])->name('update');
             });
 
             Route::get('masuk', [\App\Http\Controllers\BarangMasukController::class, 'index'])->name('masuk.index');
             Route::get('keluar', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
+            Route::get('keluar/{product}/edit', [\App\Http\Controllers\BarangKeluarController::class, 'edit'])->name('keluar.edit');
+            Route::put('keluar/{product}', [\App\Http\Controllers\BarangKeluarController::class, 'update'])->name('keluar.update');
 
-            Route::get('laporan', [\App\Http\Controllers\LaporanBarangController::class, 'index'])->name('laporan.index');
         });
+
+        Route::get('laporan', [\App\Http\Controllers\LaporanBarangController::class, 'index'])->name('laporan.index');
     });
 });

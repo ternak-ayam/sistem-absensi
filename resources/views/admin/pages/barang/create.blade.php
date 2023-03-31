@@ -8,6 +8,14 @@
 
 @section('js')
     <script src="{{  asset('stisla/js/upload-image.js') }}"></script>
+    <script>
+        const productName = document.getElementById('product_name');
+        const productCode = document.getElementById('product_code');
+
+        productName.addEventListener("change", (e) => {
+            productCode.value = e.target.value;
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -20,10 +28,10 @@
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 my-1">
-                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => 'https://i.ibb.co/1JmC0RD/500x250.png'])
-                    </div>
-                    <div class="col-md-8 col-sm-12 my-1">
+{{--                    <div class="col-md-4 col-sm-12 my-1">--}}
+{{--                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => 'https://i.ibb.co/1JmC0RD/500x250.png'])--}}
+{{--                    </div>--}}
+                    <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Informasi Dasar</h4>
@@ -31,15 +39,18 @@
                             <div class="card-body">
                                 <div class="section-title mt-0">Informasi Dasar</div>
                                 <div class="form-group">
-                                    <label>Kode Barang</label>
-                                    <input type="text" class="form-control" name="code" value="{{ $code }}"
-                                           required readonly>
-                                    <div class="invalid-feedback"></div>
+                                    <label>Nama Barang</label>
+                                    <select class="custom-select" id="product_name" name="name">
+                                        <option selected="">Pilih Barang</option>
+                                        @foreach($lists as $list)
+                                            <option value="{{ $list->custom_id }}">{{ $list->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama Barang</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                           required>
+                                    <label>Kode Barang</label>
+                                    <input type="text" class="form-control" name="code" id="product_code" value="{{ old('code') }}"
+                                           required readonly>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">

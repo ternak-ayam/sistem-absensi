@@ -43,18 +43,18 @@
                         <i class="far fa-circle"></i> Kelola Barang
                     </a>
                 </li>
-                    <li {{ is_nav_active('return') }}>
+                    <li {{ is_nav_active('retur') }}>
                         <a class="nav-link" href="{{ route('admin.barang.return.index') }}">
-                            <i class="far fa-circle"></i> Return Barang
+                            <i class="far fa-circle"></i> Retur Barang
                         </a>
                     </li>
                 @endcanany
-                <li {{ is_nav_active('laporan') }}>
-                    <a class="nav-link" href="{{ route('admin.barang.laporan.index') }}">
-                        <i class="far fa-circle"></i> Laporan Barang
-                    </a>
-                </li>
             </ul>
+        </li>
+        <li {{ is_nav_active('laporan') }}>
+            <a class="nav-link" href="{{ route('admin.laporan.index') }}">
+                <i class="fas fa-folder-open"></i> Laporan Barang
+            </a>
         </li>
     </ul>
 </aside>

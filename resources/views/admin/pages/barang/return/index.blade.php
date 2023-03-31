@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Return Barang')
+@section('title', 'Retur Barang')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
     <x-content>
         <x-slot name="modul">
-            <h1>Return Barang</h1>
+            <h1>Retur Barang</h1>
         </x-slot>
 
         <x-section>
@@ -21,7 +21,7 @@
             </x-slot>
 
             <x-slot name="header">
-                <h4>Data Return Barang</h4>
+                <h4>Data Retur Barang</h4>
                 <div class="card-header-form row">
                     <div>
                         <form>
@@ -47,7 +47,7 @@
                             <th>Nama Barang</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
-                            <th>Tanggal Return</th>
+                            <th>Tanggal Retur</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{ $loop->index + $products->firstItem() }}</td>
                                 <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->product['name'] }}</td>
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>

@@ -54,8 +54,8 @@
                         @forelse($products as $product)
                             <tr>
                                 <td>{{ $loop->index + $products->firstItem() }}</td>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->product['custom_id'] }}</td>
+                                <td>{{ $product->product['name'] }}</td>
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>

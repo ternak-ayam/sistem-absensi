@@ -9,7 +9,7 @@ class BarangMasukController extends Controller
 {
     public function index()
     {
-        $products = Product::where([['name', 'like', '%'.\request()->get('search').'%'], ['type', Product::MASUK]])->orderby('id', 'DESC')->paginate(10);
+        $products = Product::where([['code', 'like', '%'.\request()->get('search').'%'], ['type', Product::MASUK]])->orderby('id', 'DESC')->paginate(10);
 
         return view('admin.pages.barang.masuk.index', [
             'products' => $products

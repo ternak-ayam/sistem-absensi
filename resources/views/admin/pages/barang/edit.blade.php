@@ -21,10 +21,10 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 my-1">
-                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => $product->getImageUrl()])
-                    </div>
-                    <div class="col-md-8 col-sm-12 my-1">
+{{--                    <div class="col-md-4 col-sm-12 my-1">--}}
+{{--                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => $product->getImageUrl()])--}}
+{{--                    </div>--}}
+                    <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Informasi Dasar</h4>
@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}"
-                                           required>
+                                    <input type="text" class="form-control" name="name" value="{{ old('name', $product->product['name']) }}"
+                                           required readonly>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
@@ -57,11 +57,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tipe</label>
-                                    <select class="form-control" name="type" required>
-                                        <option @if($product->type == \App\Models\Product::MASUK) selected @endif value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
-                                        <option @if($product->type == \App\Models\Product::KELUAR) selected @endif value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
-                                        <option @if($product->type == \App\Models\Product::RETURN) selected @endif value="{{ \App\Models\Product::RETURN }}">Barang Return</option>
-                                    </select>
+                                    <input type="text" class="form-control" name="type"
+                                           value="{{ old('type', $product->getType()) }}" disabled>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">

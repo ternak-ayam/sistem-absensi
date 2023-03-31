@@ -140,7 +140,7 @@
                                         <div
                                             class="float-right text-primary">{{ $product->created_at->diffForHumans() }}</div>
                                         <div class="media-title">#{{ $product->code }}</div>
-                                        <span class="text-small text-muted">{{ $product->name }}</span>
+                                        <span class="text-small text-muted">{{ $product->product['name'] }}</span>
                                         <br>
                                         <div
                                             class="badge badge-success text-capitalize">{{ $product->getType() }}</div>

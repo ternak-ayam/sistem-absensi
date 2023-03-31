@@ -62,7 +62,7 @@
                             <tr>
                                 <td>{{ $loop->index + $products->firstItem() }}</td>
                                 <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->product['name'] }}</td>
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>

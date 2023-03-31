@@ -11,19 +11,38 @@ class ReturnBarangController extends Controller
 {
     public function index()
     {
-        $products = Product::where([['name', 'like', '%'.\request()->get('search').'%'], ['type', Product::RETURN]])->orderby('id', 'DESC')->paginate(10);
+        $products = Product::where([['code', 'like', '%'.\request()->get('search').'%'], ['type', Product::RETURN]])->orderby('id', 'DESC')->paginate(10);
 
         return view('admin.pages.barang.return.index', [
             'products' => $products
         ]);
     }
 
-    public function return(Product $product)
+    public function edit(Product $product)
     {
-        $product->update([
-            'type' => Product::RETURN
+        return view('admin.pages.barang.return.edit', [
+            'product' => $product
         ]);
+    }
 
-        return back();
+    public function update(Request $request, Product $product)
+    {
+        if($request->quantity == $product->quantity) {
+            $product->update([
+                'type' => Product::RETURN
+            ]);
+
+            return redirect(route('admin.barang.index'));
+        }
+
+        $newProduct = $product->replicate();
+        $newProduct->type = Product::RETURN;
+        $newProduct->quantity = $request->quantity;
+        $newProduct->save();
+
+        $product->quantity = $product->quantity - $request->quantity;
+        $product->save();
+
+        return redirect(route('admin.barang.index'));
     }
 }

@@ -61,25 +61,30 @@
                         @forelse($products as $product)
                             <tr>
                                 <td>{{ $loop->index + $products->firstItem() }}</td>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->product['custom_id'] }}</td>
+                                <td>{{ $product->product['name'] }}</td>
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>
                                 <td>{{ $product->getType() }}</td>
                                 <td>
-                                    <a href="{{ route('admin.barang.return.update', $product->id) }}"
+                                    <a href="{{ route('admin.barang.return.edit', $product->id) }}"
                                        class="btn btn-icon btn-sm btn-warning" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Edit">
+                                       data-placement="top" title="" data-original-title="Retur">
                                         <i class="fas fa-undo-alt"></i>
+                                    </a>
+                                    <a href="{{ route('admin.barang.keluar.edit', $product->id) }}"
+                                       class="btn btn-icon btn-sm btn-info" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Edit Status">
+                                        <i class="fas fa-exchange-alt"></i>
                                     </a>
                                     <a href="{{ route('admin.barang.edit', $product->id) }}"
                                        class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
                                        data-placement="top" title="" data-original-title="Edit">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('admin.barang.destroy', $product->id) }}" data-url="#"
-                                       data-id="{{ $product->id }}" data-redirect="#"
+                                    <a href="{{ route('admin.barang.destroy', $product->id) }}" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Delete"
                                        class="btn btn-sm btn-danger delete">
                                         <i class="fas fa-trash"></i>
                                     </a>

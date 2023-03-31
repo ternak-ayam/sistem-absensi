@@ -5,14 +5,15 @@ namespace App\Models;
 use App\Models\Traits\HandleUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
     use HasFactory, HandleUpload;
 
     protected $fillable = [
+        'product_list_id',
         'code',
-        'name',
         'price',
         'quantity',
         'date',
@@ -29,7 +30,7 @@ class Product extends Model
     public function getType()
     {
         if($this->type == self::MASUK) return 'Barang Masuk';
-        if($this->type == self::RETURN) return 'Barang Return';
+        if($this->type == self::RETURN) return 'Barang Retur';
 
         return 'Barang Keluar';
     }
@@ -37,5 +38,10 @@ class Product extends Model
     public function imageAttribute(): string
     {
         return 'image';
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(ProductList::class, 'product_list_id');
     }
 }

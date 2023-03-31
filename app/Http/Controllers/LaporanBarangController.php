@@ -10,7 +10,7 @@ class LaporanBarangController extends Controller
     public function index()
     {
         $months = [];
-        $products = Product::where('name', 'like', '%'.\request()->get('search').'%');
+        $products = Product::where('code', 'like', '%'.\request()->get('search').'%');
 
         if(\request()->get('month')) {
             $products->whereMonth('date', \request()->get('month'));
