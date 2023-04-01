@@ -28,6 +28,11 @@
             </a>
             <ul class="dropdown-menu">
                 @canany(['admin', 'pegawai'])
+                <li {{ is_nav_active('list') }}>
+                    <a class="nav-link" href="{{ route('admin.barang.list.index') }}">
+                        <i class="far fa-circle"></i> List Barang
+                    </a>
+                </li>
                 <li {{ is_nav_active('masuk') }}>
                     <a class="nav-link" href="{{ route('admin.barang.masuk.index') }}">
                         <i class="far fa-circle"></i> Barang Masuk
@@ -43,11 +48,11 @@
                         <i class="far fa-circle"></i> Kelola Barang
                     </a>
                 </li>
-                    <li {{ is_nav_active('retur') }}>
-                        <a class="nav-link" href="{{ route('admin.barang.return.index') }}">
-                            <i class="far fa-circle"></i> Retur Barang
-                        </a>
-                    </li>
+                <li {{ is_nav_active('retur') }}>
+                    <a class="nav-link" href="{{ route('admin.barang.return.index') }}">
+                        <i class="far fa-circle"></i> Retur Barang
+                    </a>
+                </li>
                 @endcanany
             </ul>
         </li>

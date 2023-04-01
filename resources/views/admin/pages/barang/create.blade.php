@@ -70,7 +70,7 @@
                                     <select class="form-control" name="type" required>
                                         <option value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
                                         <option value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
-                                        <option value="{{ \App\Models\Product::RETURN }}">Barang Return</option>
+                                        <option value="{{ \App\Models\Product::RETURN }}">Barang Retur</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
