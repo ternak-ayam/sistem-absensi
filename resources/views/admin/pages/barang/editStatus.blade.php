@@ -1,24 +1,25 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Barang')
+@section('title', 'Edit Status Barang')
 
 @section('css')
 
 @endsection
 
 @section('js')
-
+    <script src="{{  asset('stisla/js/upload-image.js') }}"></script>
 @endsection
 
 @section('content')
     <x-content>
         <x-slot name="modul">
-            @include('admin.partials.back-with-title', ['title' => 'Tambah Barang'])
+            @include('admin.partials.back-with-title', ['title' => 'Edit Status Barang'])
         </x-slot>
         <div>
-            <form action="{{ route('admin.barang.list.store') }}" enctype="multipart/form-data" method="post"
+            <form action="{{ route('admin.barang.updateStatus', $product->id) }}" enctype="multipart/form-data" method="post"
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
@@ -26,17 +27,19 @@
                                 <h4>Informasi Dasar</h4>
                             </div>
                             <div class="card-body">
-                                <div class="section-title mt-0">Informasi Barang</div>
+                                <div class="section-title mt-0">Informasi Dasar</div>
                                 <div class="form-group">
-                                    <label>Kode Barang</label>
-                                    <input type="text" class="form-control" id="custom_id" name="custom_id" value="{{ old('custom_id') }}"
-                                           required>
+                                    <label>Status</label>
+                                    <select class="form-control" name="status" required>
+                                        <option value="">Pilih Status</option>
+                                        <option value="{{ \App\Models\Product::APPROVED }}">Setujui</option>
+                                        <option value="{{ \App\Models\Product::REJECTED }}">Tolak</option>
+                                    </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama Barang</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
-                                           required>
+                                    <label>Alasan Jika Ditolak (optional)</label>
+                                    <textarea class="form-control" name="reasons">{{ old('reasons') }}</textarea>
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>

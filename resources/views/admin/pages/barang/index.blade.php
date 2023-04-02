@@ -54,6 +54,7 @@
                             <th>Jumlah</th>
                             <th>Tanggal Masuk</th>
                             <th>Tipe</th>
+                            <th>Status</th>
                             <th style="width:150px">Action</th>
                         </tr>
                         </thead>
@@ -68,6 +69,17 @@
                                 <td>{{ $product->date->format('F j, Y') }}</td>
                                 <td>{{ $product->getType() }}</td>
                                 <td>
+                                    <span class="{{ $product->getStatusColor() }}">{{ $product->getStatus() }}@if(!blank($product->reasons)){{ ': ' . $product->reasons }} @endif
+                                    </span>
+                                </td>
+                                <td>
+                                    @can('admin')
+                                    <a href="{{ route('admin.barang.editStatus', $product->id) }}"
+                                       class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Update Status">
+                                        <i class="fas fa-question"></i>
+                                    </a>
+                                    @endcan
                                     <a href="{{ route('admin.barang.return.edit', $product->id) }}"
                                        class="btn btn-icon btn-sm btn-warning" data-toggle="tooltip"
                                        data-placement="top" title="" data-original-title="Retur">
@@ -75,7 +87,7 @@
                                     </a>
                                     <a href="{{ route('admin.barang.keluar.edit', $product->id) }}"
                                        class="btn btn-icon btn-sm btn-info" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Edit Status">
+                                       data-placement="top" title="" data-original-title="Edit Tipe">
                                         <i class="fas fa-exchange-alt"></i>
                                     </a>
                                     <a href="{{ route('admin.barang.edit', $product->id) }}"

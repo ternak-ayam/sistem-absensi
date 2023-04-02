@@ -31,6 +31,8 @@ Route::group([], function () {
                 Route::get('export', [\App\Http\Controllers\BarangController::class, 'export'])->name('export');
                 Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
                 Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
+                Route::put('{product}/status', [\App\Http\Controllers\BarangController::class, 'updateStatus'])->name('updateStatus');
+                Route::get('{product}/status/edit', [\App\Http\Controllers\BarangController::class, 'editStatus'])->name('editStatus');
             });
 
             Route::prefix('retur')->as('return.')->group(function () {

@@ -24,6 +24,13 @@ class BarangListController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'custom_id' => ['required', 'unique:product_lists'],
+            'name' => ['required']
+        ], [
+            'custom_id.unique' => 'Kode barang sudah digunakan '
+        ]);
+
         $listProduct = new ProductList();
         $listProduct->fill($request->all());
         $listProduct->saveOrFail();
