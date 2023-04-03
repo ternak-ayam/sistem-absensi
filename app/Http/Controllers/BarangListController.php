@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductList;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BarangListController extends Controller
 {
@@ -25,7 +26,7 @@ class BarangListController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'custom_id' => ['required', 'unique:product_lists'],
+            'custom_id' => ['required', Rule::unique('product_lists')->whereNull('deleted_at')],
             'name' => ['required']
         ], [
             'custom_id.unique' => 'Kode barang sudah digunakan '
