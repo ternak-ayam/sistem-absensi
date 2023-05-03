@@ -7,13 +7,19 @@
 @endsection
 
 @section('js')
-    <script src="{{  asset('stisla/js/upload-image.js') }}"></script>
     <script>
         const productName = document.getElementById('product_name');
         const productCode = document.getElementById('product_code');
 
         productName.addEventListener("change", (e) => {
             productCode.value = e.target.value;
+        });
+
+        const productTypeSelect = document.getElementById('product_type_select');
+        const productTypeView = document.getElementById('product_type_view');
+
+        productTypeSelect.addEventListener("change", (e) => {
+            productTypeView.innerHTML = e.srcElement.options[e.srcElement.selectedIndex].text;
         });
     </script>
 @endsection
@@ -28,9 +34,6 @@
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
                 <div class="row">
-{{--                    <div class="col-md-4 col-sm-12 my-1">--}}
-{{--                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => 'https://i.ibb.co/1JmC0RD/500x250.png'])--}}
-{{--                    </div>--}}
                     <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
                             <div class="card-header">
@@ -67,7 +70,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tipe</label>
-                                    <select class="form-control" name="type" required>
+                                    <select class="form-control" name="type" id="product_type_select" required>
                                         <option value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
                                         <option value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
                                         <option value="{{ \App\Models\Product::RETURN }}">Barang Retur</option>
@@ -75,7 +78,7 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Tanggal Masuk</label>
+                                    <label id="product_type_view">Barang Masuk</label>
                                     <input type="date" class="form-control" name="date"
                                            value="{{ old('date') }}" required>
                                     <div class="invalid-feedback"></div>
