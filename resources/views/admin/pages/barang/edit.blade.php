@@ -21,9 +21,9 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-{{--                    <div class="col-md-4 col-sm-12 my-1">--}}
-{{--                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => $product->getImageUrl()])--}}
-{{--                    </div>--}}
+                    {{--                    <div class="col-md-4 col-sm-12 my-1">--}}
+                    {{--                        @include('admin.pages.barang.partials.image-upload', ['imageUrl' => $product->getImageUrl()])--}}
+                    {{--                    </div>--}}
                     <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
                             <div class="card-header">
@@ -39,7 +39,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name', $product->product['name']) }}"
+                                    <input type="text" class="form-control" name="name"
+                                           value="{{ old('name', $product->product['name']) }}"
                                            required readonly>
                                     <div class="invalid-feedback"></div>
                                 </div>
@@ -62,7 +63,13 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Tanggal Masuk</label>
+                                    @if($product->isBarangMasuk())
+                                        <label>Tanggal Masuk</label>
+                                    @elseif($product->isBarangKeluar())
+                                        <label>Tanggal Keluar</label>
+                                    @elseif($product->isBarangKeluar())
+                                        <label>Tanggal Return</label>
+                                    @endif
                                     <input type="date" class="form-control" name="date"
                                            value="{{ old('date', $product->date->format('Y-m-d')) }}" required>
                                     <div class="invalid-feedback"></div>

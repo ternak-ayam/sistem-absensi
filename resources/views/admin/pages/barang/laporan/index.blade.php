@@ -53,7 +53,7 @@
                             <th>Nama Barang</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Masuk/Keluar/Retur</th>
                             <th>Tipe</th>
                         </tr>
                         </thead>

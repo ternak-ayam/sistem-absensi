@@ -41,6 +41,21 @@ class Product extends Model
         return 'Barang Keluar';
     }
 
+    public function isBarangKeluar(): bool
+    {
+        return $this->type == self::KELUAR;
+    }
+
+    public function isBarangMasuk(): bool
+    {
+        return $this->type == self::MASUK;
+    }
+
+    public function isBarangReturn(): bool
+    {
+        return $this->type == self::RETURN;
+    }
+
     public function getStatus()
     {
         if($this->status == self::PENDING) return 'Menunggu Persetujuan';
