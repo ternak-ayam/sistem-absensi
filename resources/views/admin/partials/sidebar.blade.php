@@ -29,6 +29,11 @@
             <ul class="dropdown-menu">
                 @canany(['admin', 'pegawai', 'owner'])
                     @canany(['admin', 'pegawai'])
+                        <li {{ is_nav_active('master') }}>
+                            <a class="nav-link" href="{{ route('admin.barang.master.index') }}">
+                                <i class="far fa-circle"></i> Master Barang
+                            </a>
+                        </li>
                         <li {{ is_nav_active('list') }}>
                             <a class="nav-link" href="{{ route('admin.barang.list.index') }}">
                                 <i class="far fa-circle"></i> List Barang

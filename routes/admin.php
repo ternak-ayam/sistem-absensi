@@ -41,6 +41,8 @@ Route::group([], function () {
                 Route::put('/{product}', [\App\Http\Controllers\ReturnBarangController::class, 'update'])->name('update');
             });
 
+            Route::get('master', [\App\Http\Controllers\MasterBarangController::class, 'index'])->name('master.index');
+
             Route::get('list', [\App\Http\Controllers\BarangListController::class, 'index'])->name('list.index');
             Route::get('list/create', [\App\Http\Controllers\BarangListController::class, 'create'])->name('list.create');
             Route::post('list', [\App\Http\Controllers\BarangListController::class, 'store'])->name('list.store');
