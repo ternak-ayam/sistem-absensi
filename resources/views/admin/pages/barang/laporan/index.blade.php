@@ -26,10 +26,25 @@
                     <div>
                         <form>
                             <div class="input-group">
-                                <select type="text" name="month" id="month" class="form-control" onchange="this.form.submit()">
+                                <select type="text" class="form-control" name="type" id="product_type_select" required
+                                        onchange="this.form.submit()">
+                                    <option value="">Pilih Tipe</option>
+                                    <option @if(request()->get('type') == \App\Models\Product::MASUK) selected @endif value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
+                                    <option @if(request()->get('type') == \App\Models\Product::KELUAR) selected @endif value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
+                                    <option @if(request()->get('type') == \App\Models\Product::RETURN) selected @endif value="{{ \App\Models\Product::RETURN }}">Barang Retur</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <form>
+                            <div class="input-group">
+                                <select type="text" name="month" id="month" class="form-control"
+                                        onchange="this.form.submit()">
                                     <option value="">Pilih Bulan</option>
                                     @foreach($months as $key => $month)
-                                        <option @if($key + 1 == request()->get('month')) selected @endif value="{{ $key + 1 }}">{{ $month }}</option>
+                                        <option @if($key + 1 == request()->get('month')) selected
+                                                @endif value="{{ $key + 1 }}">{{ $month }}</option>
                                     @endforeach
                                 </select>
                             </div>

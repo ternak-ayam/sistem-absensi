@@ -11,10 +11,18 @@ class LaporanBarangExport implements FromView, ShouldAutoSize
 {
     public function view(): View
     {
-        $products = Product::orderby('id', 'DESC')->get();
+        $products = Product::where('code', 'like', '%'.session()->get('search').'%');
+
+        if(session()->get('month')) {
+            $products->whereMonth('date', session()->get('month'));
+        }
+
+        if($type = session()->get('type')) {
+            $products->where('type', $type);
+        }
 
         return view('admin.pages.barang.laporan.excel', [
-            'products' => $products
+            'products' => $products->orderby('id', 'DESC')->get()
         ]);
     }
 }

@@ -75,7 +75,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    @if($product->status !== \App\Models\Product::APPROVED)
+                                    @if($product->status !== \App\Models\Product::APPROVED && $product->type !== \App\Models\Product::RETURN)
                                         @can('admin')
                                         <a href="{{ route('admin.barang.editStatus', $product->id) }}"
                                            class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"

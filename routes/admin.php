@@ -28,7 +28,9 @@ Route::group([], function () {
                 Route::get('create', [\App\Http\Controllers\BarangController::class, 'create'])->name('create');
                 Route::get('{product}/edit', [\App\Http\Controllers\BarangController::class, 'edit'])->name('edit');
                 Route::get('{product}/delete', [\App\Http\Controllers\BarangController::class, 'destroy'])->name('destroy');
-                Route::get('export', [\App\Http\Controllers\BarangController::class, 'export'])->name('export');
+
+                Route::get('export', [\App\Http\Controllers\LaporanBarangController::class, 'export'])->name('export');
+
                 Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
                 Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
                 Route::put('{product}/status', [\App\Http\Controllers\BarangController::class, 'updateStatus'])->name('updateStatus');

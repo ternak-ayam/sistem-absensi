@@ -68,11 +68,6 @@ class BarangController extends Controller
         return redirect(route('admin.barang.index'));
     }
 
-    public function export()
-    {
-        return Excel::download(new LaporanBarangExport(), now()->format('Y-m-d').'-laporan-barang.xlsx');
-    }
-
     public function updateStatus(Request $request, Product $product)
     {
         $product->status = $request->status;

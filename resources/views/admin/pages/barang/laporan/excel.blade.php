@@ -28,5 +28,10 @@
             </td>
         </tr>
     @endforelse
+    <tr>
+        <td colspan="3"></td>
+        <td>{{ formatRupiah($products->sum('price')) }}</td>
+        <td>{{ $products->sum('quantity') }}</td>
+    </tr>
     </tbody>
 </table>
