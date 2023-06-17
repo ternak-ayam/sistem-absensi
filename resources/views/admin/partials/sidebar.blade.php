@@ -40,6 +40,7 @@
                             </a>
                         </li>
                     @endcanany
+                    @can('admin')
                     <li {{ is_nav_active('masuk') }}>
                         <a class="nav-link" href="{{ route('admin.barang.masuk.index') }}">
                             <i class="far fa-circle"></i> Barang Masuk
@@ -50,6 +51,7 @@
                             <i class="far fa-circle"></i> Barang Keluar
                         </a>
                     </li>
+                    @endcan
                     @canany(['admin', 'pegawai'])
                         <li {{ is_nav_active('kelola') }}>
                             <a class="nav-link" href="{{ route('admin.barang.index') }}">
@@ -57,11 +59,13 @@
                             </a>
                         </li>
                     @endcanany
+                    @can('admin')
                     <li {{ is_nav_active('retur') }}>
                         <a class="nav-link" href="{{ route('admin.barang.return.index') }}">
                             <i class="far fa-circle"></i> Retur Barang
                         </a>
                     </li>
+                    @endcan
                 @endcanany
             </ul>
         </li>

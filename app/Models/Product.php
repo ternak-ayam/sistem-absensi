@@ -31,6 +31,10 @@ class Product extends Model
     const REJECTED  = "REJECTED";
     const APPROVED  = "APPROVED";
 
+    protected $attributes = [
+        'type' => self::MASUK
+    ];
+
     protected $dates = ['date'];
 
     public function getType()

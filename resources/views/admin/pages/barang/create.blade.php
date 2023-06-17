@@ -68,7 +68,7 @@
                                            value="{{ old('quantity') }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="form-group">
+    {{--                            <div class="form-group">
                                     <label>Tipe</label>
                                     <select class="form-control" name="type" id="product_type_select" required>
                                         <option value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
@@ -76,9 +76,9 @@
                                         <option value="{{ \App\Models\Product::RETURN }}">Barang Retur</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
-                                </div>
+                                </div>--}}
                                 <div class="form-group">
-                                    <label id="product_type_view">Barang Masuk</label>
+                                    <label id="product_type_view">Tanggal Masuk</label>
                                     <input type="date" class="form-control" name="date"
                                            value="{{ old('date') }}" required>
                                     <div class="invalid-feedback"></div>

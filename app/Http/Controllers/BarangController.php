@@ -46,8 +46,7 @@ class BarangController extends Controller
             'code' => $request->code,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'date' => $request->date,
-            'type' => $request->type
+            'date' => $request->date
         ]);
         $product->saveOrFail();
 

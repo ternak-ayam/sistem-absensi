@@ -34,11 +34,13 @@
                             </div>
                         </form>
                     </div>
+                    @can('pegawai')
                     <div class="ml-2">
                         <a href="{{ route('admin.barang.create') }}" class="btn btn-sm btn-primary">
                             Tambah Barang <i class="fas fa-plus"></i>
                         </a>
                     </div>
+                    @endcan
                 </div>
             </x-slot>
 
@@ -73,33 +75,37 @@
                                     </span>
                                 </td>
                                 <td>
-                                    @can('admin')
-                                    <a href="{{ route('admin.barang.editStatus', $product->id) }}"
-                                       class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Update Status">
-                                        <i class="fas fa-question"></i>
-                                    </a>
-                                    @endcan
-                                    <a href="{{ route('admin.barang.return.edit', $product->id) }}"
-                                       class="btn btn-icon btn-sm btn-warning" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Retur">
-                                        <i class="fas fa-undo-alt"></i>
-                                    </a>
-                                    <a href="{{ route('admin.barang.keluar.edit', $product->id) }}"
-                                       class="btn btn-icon btn-sm btn-info" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Edit Tipe">
-                                        <i class="fas fa-exchange-alt"></i>
-                                    </a>
-                                    <a href="{{ route('admin.barang.edit', $product->id) }}"
-                                       class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Edit">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('admin.barang.destroy', $product->id) }}" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Delete"
-                                       class="btn btn-sm btn-danger delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    @if($product->status !== \App\Models\Product::APPROVED)
+                                        @can('admin')
+                                        <a href="{{ route('admin.barang.editStatus', $product->id) }}"
+                                           class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Update Status">
+                                            <i class="fas fa-question"></i>
+                                        </a>
+                                        @endcan
+                                        @can('pegawai')
+                                        <a href="{{ route('admin.barang.return.edit', $product->id) }}"
+                                           class="btn btn-icon btn-sm btn-warning" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Retur">
+                                            <i class="fas fa-undo-alt"></i>
+                                        </a>
+                                        <a href="{{ route('admin.barang.keluar.edit', $product->id) }}"
+                                           class="btn btn-icon btn-sm btn-info" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Edit Tipe">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </a>
+                                        <a href="{{ route('admin.barang.edit', $product->id) }}"
+                                           class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Edit">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a href="{{ route('admin.barang.destroy', $product->id) }}" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Delete"
+                                           class="btn btn-sm btn-danger delete">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        @endcan
+                                    @endif
                                 </td>
                             </tr>
                         @empty
