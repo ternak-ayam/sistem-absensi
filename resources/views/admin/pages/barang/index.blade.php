@@ -71,11 +71,12 @@
                                 <td>{{ $product->date->format('F j, Y') }}</td>
                                 <td>{{ $product->getType() }}</td>
                                 <td>
-                                    <span class="{{ $product->getStatusColor() }}">{{ $product->getStatus() }}@if(!blank($product->reasons)){{ ': ' . $product->reasons }} @endif
-                                    </span>
+                                    @if($product->type !== \App\Models\Product::RETURN)
+                                        <span class="{{ $product->getStatusColor() }}">{{ $product->getStatus() }}@if(!blank($product->reasons)){{ ': ' . $product->reasons }} @endif</span>
+                                    @endif
                                 </td>
                                 <td>
-                                    @if($product->status !== \App\Models\Product::APPROVED && $product->type !== \App\Models\Product::RETURN)
+                                    @if($product->status !== \App\Models\Product::APPROVED && $product->type !== \App\Models\Product::RETURN && $product->type == \App\Models\Product::MASUK)
                                         @can('admin')
                                         <a href="{{ route('admin.barang.editStatus', $product->id) }}"
                                            class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"
