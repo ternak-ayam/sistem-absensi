@@ -34,13 +34,13 @@
                             </div>
                         </form>
                     </div>
-                    @canany(['owner', 'pegawai'])
+                    @can('pegawai')
                     <div class="ml-2">
                         <a href="{{ route('admin.barang.create') }}" class="btn btn-sm btn-primary">
                             Tambah Barang <i class="fas fa-plus"></i>
                         </a>
                     </div>
-                    @endcanany
+                    @endcan
                 </div>
             </x-slot>
 
@@ -52,9 +52,10 @@
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th>Harga Satuan</th>
+                            <th>Harga</th>
                             <th>Jumlah</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Masuk/Keluar/Retur</th>
+                            <th>Tipe</th>
                             <th>Status</th>
                             <th style="width:150px">Action</th>
                         </tr>
@@ -68,20 +69,23 @@
                                 <td>{{ formatRupiah($product->price) }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->date->format('F j, Y') }}</td>
+                                <td>{{ $product->getType() }}</td>
                                 <td>
-                                    <span class="{{ $product->getStatusColor() }}">{{ $product->getStatus() }}@if(!blank($product->reasons)){{ ': ' . $product->reasons }} @endif</span>
+                                    @if($product->type !== \App\Models\Product::RETURN)
+                                        <span class="{{ $product->getStatusColor() }}">{{ $product->getStatus() }}@if(!blank($product->reasons)){{ ': ' . $product->reasons }} @endif</span>
+                                    @endif
                                 </td>
                                 <td>
-                                    @if($product->status !== \App\Models\Product::APPROVED && $product->status !== \App\Models\Product::REJECTED)
-                                    @canany(['owner', 'pegawai'])
+                                    @if($product->status !== \App\Models\Product::APPROVED && $product->type !== \App\Models\Product::RETURN && $product->type == \App\Models\Product::MASUK)
+                                        @can('admin')
                                         <a href="{{ route('admin.barang.editStatus', $product->id) }}"
                                            class="btn btn-icon btn-sm btn-success" data-toggle="tooltip"
                                            data-placement="top" title="" data-original-title="Update Status">
                                             <i class="fas fa-question"></i>
                                         </a>
-                                    @endcanany
-                                    @canany(['owner', 'pegawai'])
-                                        {{-- <a href="{{ route('admin.barang.return.edit', $product->id) }}"
+                                        @endcan
+                                        @can('pegawai')
+                                        <a href="{{ route('admin.barang.return.edit', $product->id) }}"
                                            class="btn btn-icon btn-sm btn-warning" data-toggle="tooltip"
                                            data-placement="top" title="" data-original-title="Retur">
                                             <i class="fas fa-undo-alt"></i>
@@ -90,7 +94,7 @@
                                            class="btn btn-icon btn-sm btn-info" data-toggle="tooltip"
                                            data-placement="top" title="" data-original-title="Edit Tipe">
                                             <i class="fas fa-exchange-alt"></i>
-                                        </a> --}}
+                                        </a>
                                         <a href="{{ route('admin.barang.edit', $product->id) }}"
                                            class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
                                            data-placement="top" title="" data-original-title="Edit">
@@ -101,7 +105,7 @@
                                            class="btn btn-sm btn-danger delete">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                        @endcanany
+                                        @endcan
                                     @endif
                                 </td>
                             </tr>

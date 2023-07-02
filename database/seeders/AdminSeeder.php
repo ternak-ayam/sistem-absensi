@@ -15,14 +15,14 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::where('username', 'owner')->forceDelete();
+        Admin::where('username', 'admin')->forceDelete();
 
         Admin::create([
-            'name' => 'Hattori',
-            'email' => 'owner@example.com',
-            'username' => 'owner',
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'username' => 'admin',
             'password' => Hash::make('password'),
-            'role' => Admin::OWNER
+            'role' => Admin::ADMIN
         ]);
     }
 }

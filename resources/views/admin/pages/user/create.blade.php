@@ -48,6 +48,7 @@
                                 <div class="form-group">
                                     <label>Role</label>
                                     <select class="form-control" name="role" required>
+                                        <option value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
                                         <option value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
                                         <option value="{{ \App\Models\Admin::OWNER }}">Owner</option>
                                     </select>

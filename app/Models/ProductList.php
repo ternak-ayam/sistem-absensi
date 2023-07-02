@@ -8,15 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductList extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'custom_id',
         'name'
     ];
-
-    public function productStock()
-    {
-        return $this->hasOne(ProductStock::class, 'code', 'custom_id');
-    }
 }

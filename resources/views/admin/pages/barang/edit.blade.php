@@ -45,19 +45,31 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Harga Satuan</label>
+                                    <label>Harga</label>
                                     <input type="text" class="form-control" name="price"
                                            value="{{ old('price', $product->price) }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah</label>
-                                    <input type="number" class="form-control" name="quantity" min="0"
+                                    <input type="number" class="form-control" name="quantity"
                                            value="{{ old('quantity', $product->quantity) }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Tanggal Masuk</label>
+                                    <label>Tipe</label>
+                                    <input type="text" class="form-control" name="type"
+                                           value="{{ old('type', $product->getType()) }}" disabled>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    @if($product->isBarangMasuk())
+                                        <label>Tanggal Masuk</label>
+                                    @elseif($product->isBarangKeluar())
+                                        <label>Tanggal Keluar</label>
+                                    @elseif($product->isBarangKeluar())
+                                        <label>Tanggal Return</label>
+                                    @endif
                                     <input type="date" class="form-control" name="date"
                                            value="{{ old('date', $product->date->format('Y-m-d')) }}" required>
                                     <div class="invalid-feedback"></div>

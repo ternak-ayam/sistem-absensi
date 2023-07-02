@@ -34,7 +34,7 @@
                             </div>
                         </form>
                     </div>
-                    @can('owner')
+                    @can('pegawai')
                     <div class="ml-2">
                         <a href="{{ route('admin.barang.list.create') }}" class="btn btn-sm btn-primary">
                             Tambah Barang <i class="fas fa-plus"></i>

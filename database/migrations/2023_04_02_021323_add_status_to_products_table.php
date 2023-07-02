@@ -14,7 +14,7 @@ class AddStatusToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('status')->default(\App\Models\Product::PENDING)->after('date');
+            $table->string('status')->default(\App\Models\Product::PENDING)->after('type');
             $table->string('reasons')->after('status')->nullable();
         });
     }
