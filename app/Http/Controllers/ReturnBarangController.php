@@ -29,7 +29,8 @@ class ReturnBarangController extends Controller
     {
         if($request->quantity == $product->quantity) {
             $product->update([
-                'type' => Product::RETURN
+                'type' => Product::RETURN,
+                'status' => Product::REJECTED
             ]);
 
             return redirect(route('admin.barang.index'));
@@ -37,6 +38,7 @@ class ReturnBarangController extends Controller
 
         $newProduct = $product->replicate();
         $newProduct->type = Product::RETURN;
+        $newProduct->status = Product::REJECTED;
         $newProduct->quantity = $request->quantity;
         $newProduct->save();
 

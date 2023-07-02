@@ -49,7 +49,6 @@
                                 <div class="form-group">
                                     <label>Role</label>
                                     <select class="form-control" name="role" id="role" required>
-                                        <option @if($user->role == \App\Models\Admin::ADMIN) selected @endif value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
                                         <option @if($user->role == \App\Models\Admin::PEGAWAI) selected @endif value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
                                         <option @if($user->role == \App\Models\Admin::OWNER) selected @endif value="{{ \App\Models\Admin::OWNER }}">Owner</option>
                                     </select>

@@ -131,6 +131,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Riwayat Barang</h4>
+                            <div class="badge badge-pendings text-capitalize">{{ $pending }} Pending</div>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
@@ -139,11 +140,11 @@
                                     <div class="media-body">
                                         <div
                                             class="float-right text-primary">{{ $product->created_at->diffForHumans() }}</div>
-                                        <div class="media-title">#{{ $product->code }}</div>
-                                        <span class="text-small text-muted">{{ $product->product['name'] }}</span>
+                                        <div class="media-title">{{ $product->product['name'] }}</div>
+                                        <span class="text-small text-muted">#{{ $product->code }}</span>
                                         <br>
                                         <div
-                                            class="badge badge-success text-capitalize">{{ $product->getType() }}</div>
+                                            class="badge badge-success text-capitalize">{{ $product->quantity }}</div>
                                     </div>
                                 </li>
                                 @endforeach

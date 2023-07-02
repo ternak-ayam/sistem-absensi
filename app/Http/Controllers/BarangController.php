@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\LaporanBarangExport;
 use App\Models\Product;
 use App\Models\ProductList;
+use App\Models\ProductStock;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,7 +13,15 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $products = Product::where('code', 'like', '%'.\request()->get('search').'%')->orderby('id', 'DESC')->paginate(10);
+        $products = Product::where(function ($query) {
+            $search = \request()->get('search');
+            $query->where('code', 'like', '%' . $search . '%')
+            ->orWhereHas('product', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'like', '%' . $search . '%');
+            });
+    })
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
 
         return view('admin.pages.barang.index', [
             'products' => $products
@@ -68,11 +77,17 @@ class BarangController extends Controller
         return redirect(route('admin.barang.index'));
     }
 
-    public function updateStatus(Request $request, Product $product)
+    public function updateStatus(Request $request, Product $product) //this function only adds stock if the request is approved
     {
         $product->status = $request->status;
         $product->reasons = $request->reasons;
         $product->saveOrFail();
+
+        if ($request->status === Product::APPROVED) {
+            $productStock = ProductStock::where('product_list_id', $product->product_list_id)->first();
+            $productStock->stock += $product->quantity;
+            $productStock->saveOrFail();
+        }
 
         return redirect(route('admin.barang.index'));
     }

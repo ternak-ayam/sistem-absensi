@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToProductsTable extends Migration
+class ModifyCodeOnProductOutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddStatusToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('status')->default(\App\Models\Product::PENDING)->after('date');
-            $table->string('reasons')->after('status')->nullable();
+        Schema::table('product_outs', function (Blueprint $table) {
+            $table->dropColumn('code');
         });
     }
 
@@ -26,7 +25,7 @@ class AddStatusToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('product_outs', function (Blueprint $table) {
             //
         });
     }

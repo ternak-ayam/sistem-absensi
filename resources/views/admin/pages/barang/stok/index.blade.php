@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'List Barang')
+@section('title', 'Stok Barang')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
     <x-content>
         <x-slot name="modul">
-            <h1>List Barang</h1>
+            <h1>Stok Barang</h1>
         </x-slot>
 
         <x-section>
@@ -21,7 +21,7 @@
             </x-slot>
 
             <x-slot name="header">
-                <h4>Data List Barang</h4>
+                <h4>Data Stok Barang</h4>
                 <div class="card-header-form row">
                     <div>
                         <form>
@@ -34,13 +34,6 @@
                             </div>
                         </form>
                     </div>
-                    @can('owner')
-                    <div class="ml-2">
-                        <a href="{{ route('admin.barang.list.create') }}" class="btn btn-sm btn-primary">
-                            Tambah Barang <i class="fas fa-plus"></i>
-                        </a>
-                    </div>
-                    @endcan
                 </div>
             </x-slot>
 
@@ -52,22 +45,16 @@
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th style="width:150px">Action</th>
+                            <th>Stok</th>
                         </tr>
                         </thead>
                         <tbody>
                         @forelse($products as $product)
                             <tr>
                                 <td>{{ $loop->index + $products->firstItem() }}</td>
-                                <td>{{ $product->custom_id }}</td>
+                                <td>{{ $product->code }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>
-                                    <a href="{{ route('admin.barang.list.destroy', $product->id) }}" data-toggle="tooltip"
-                                       data-placement="top" title="" data-original-title="Delete"
-                                       class="btn btn-sm btn-danger delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
+                                <td>{{ $product->stock }}</td>
                             </tr>
                         @empty
                             <tr>

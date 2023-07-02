@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Barang')
+@section('title', 'Barang Keluar')
 
 @section('css')
 
@@ -21,16 +21,36 @@
         productTypeSelect.addEventListener("change", (e) => {
             productTypeView.innerHTML = e.srcElement.options[e.srcElement.selectedIndex].text;
         });
+
+        $(document).ready(function() {
+            $('#product_name').on('change', function() {
+                var selectedOption = $(this).find('option:selected');
+                var maxQuantity = selectedOption.data('max-quantity');
+
+                // Set the max attribute of the quantity input field
+                $('input[name="quantity"]').attr('max', maxQuantity);
+            });
+
+            $('input[name="quantity"]').on('input', function() {
+                var maxQuantity = $(this).attr('max');
+                var enteredQuantity = parseInt($(this).val());
+
+                // Validate the entered quantity
+                if (enteredQuantity > maxQuantity) {
+                    $(this).val(maxQuantity);
+                }
+            });
+        });
     </script>
 @endsection
 
 @section('content')
     <x-content>
         <x-slot name="modul">
-            @include('admin.partials.back-with-title', ['title' => 'Tambah Barang'])
+            @include('admin.partials.back-with-title', ['title' => 'Barang Keluar'])
         </x-slot>
         <div>
-            <form action="{{ route('admin.barang.store') }}" enctype="multipart/form-data" method="post"
+            <form action="{{ route('admin.barang.keluar.store') }}" enctype="multipart/form-data" method="post"
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
                 <div class="row">
@@ -46,7 +66,7 @@
                                     <select class="custom-select" id="product_name" name="name">
                                         <option selected="">Pilih Barang</option>
                                         @foreach($lists as $list)
-                                            <option value="{{ $list->custom_id }}">{{ $list->name }}</option>
+                                            <option value="{{ $list->custom_id }}" data-max-quantity="{{ $list->productStock->stock }}">{{ $list->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -68,17 +88,21 @@
                                            value="{{ old('quantity') }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
-    {{--                            <div class="form-group">
+                               <div class="form-group">
                                     <label>Tipe</label>
                                     <select class="form-control" name="type" id="product_type_select" required>
-                                        <option value="{{ \App\Models\Product::MASUK }}">Barang Masuk</option>
-                                        <option value="{{ \App\Models\Product::KELUAR }}">Barang Keluar</option>
-                                        <option value="{{ \App\Models\Product::RETURN }}">Barang Retur</option>
+                                        <option value="{{ \App\Models\ProductOut::KELUAR }}">Barang Keluar</option>
+                                        <option value="{{ \App\Models\ProductOut::RETURN }}">Barang Retur</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
-                                </div>--}}
+                                </div>
                                 <div class="form-group">
-                                    <label id="product_type_view">Tanggal Masuk</label>
+                                    <label>Alasan</label>
+                                    <textarea class="form-control" name="reasons">{{ old('reasons') }}</textarea>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="product_type_view">Tanggal Keluar</label>
                                     <input type="date" class="form-control" name="date"
                                            value="{{ old('date') }}" required>
                                     <div class="invalid-feedback"></div>

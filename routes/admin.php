@@ -28,13 +28,28 @@ Route::group([], function () {
                 Route::get('create', [\App\Http\Controllers\BarangController::class, 'create'])->name('create');
                 Route::get('{product}/edit', [\App\Http\Controllers\BarangController::class, 'edit'])->name('edit');
                 Route::get('{product}/delete', [\App\Http\Controllers\BarangController::class, 'destroy'])->name('destroy');
-
+            
+              
                 Route::get('export', [\App\Http\Controllers\LaporanBarangController::class, 'export'])->name('export');
 
                 Route::post('/', [\App\Http\Controllers\BarangController::class, 'store'])->name('store');
                 Route::put('{product}', [\App\Http\Controllers\BarangController::class, 'update'])->name('update');
                 Route::put('{product}/status', [\App\Http\Controllers\BarangController::class, 'updateStatus'])->name('updateStatus');
                 Route::get('{product}/status/edit', [\App\Http\Controllers\BarangController::class, 'editStatus'])->name('editStatus');
+            });
+
+            Route::prefix('keluar')->group(function () {
+                Route::get('/', [\App\Http\Controllers\BarangKeluarController::class, 'index'])->name('keluar.index');
+                Route::get('create', [\App\Http\Controllers\BarangKeluarController::class, 'create'])->name('keluar.create');
+                Route::get('{product}/edit', [\App\Http\Controllers\BarangKeluarController::class, 'edit'])->name('keluar.edit');
+                Route::get('{product}/delete', [\App\Http\Controllers\BarangKeluarController::class, 'destroy'])->name('keluar.destroy');
+
+            
+              
+                Route::get('export', [\App\Http\Controllers\LaporanBarangController::class, 'export'])->name('export');
+
+                Route::post('/', [\App\Http\Controllers\BarangKeluarController::class, 'store'])->name('keluar.store');
+                Route::put('{product}', [\App\Http\Controllers\BarangKeluarController::class, 'update'])->name('keluar.update');
             });
 
             Route::prefix('retur')->as('return.')->group(function () {
@@ -44,6 +59,7 @@ Route::group([], function () {
             });
 
             Route::get('master', [\App\Http\Controllers\MasterBarangController::class, 'index'])->name('master.index');
+            Route::get('stok', [\App\Http\Controllers\StokBarangController::class, 'index'])->name('stok.index');
 
             Route::get('list', [\App\Http\Controllers\BarangListController::class, 'index'])->name('list.index');
             Route::get('list/create', [\App\Http\Controllers\BarangListController::class, 'create'])->name('list.create');

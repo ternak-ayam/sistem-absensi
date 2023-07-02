@@ -48,7 +48,6 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    const ADMIN = "ADMIN";
     const PEGAWAI = "PEGAWAI";
     const OWNER = "OWNER";
 }

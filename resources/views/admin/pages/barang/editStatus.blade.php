@@ -24,10 +24,10 @@
                     <div class="col-md-12 col-sm-12 my-1">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Informasi Dasar</h4>
+                                <h4>Status Barang</h4>
                             </div>
                             <div class="card-body">
-                                <div class="section-title mt-0">Informasi Dasar</div>
+                                <div class="section-title mt-0">Ubah Status Barang</div>
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status" required>
