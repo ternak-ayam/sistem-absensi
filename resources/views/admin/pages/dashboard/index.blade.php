@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Barang Keluar</h4>
+                                <h4>Total Pegawai Aktif</h4>
                             </div>
                             <div class="card-body">
                                 {{ $outProducts }}
@@ -75,12 +75,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon bg-warning">
+                        <div class="card-icon bg-info">
                             <i class="fas fa-calendar-day"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Barang Masuk</h4>
+                                <h4>Total Pegawai Non-Aktif</h4>
                             </div>
                             <div class="card-body">
                                 {{ $inProducts }}
@@ -95,7 +95,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Barang</h4>
+                                <h4>Total Kehadiran</h4>
                             </div>
                             <div class="card-body">
                                 {{ $totalProducts }}
@@ -149,7 +149,7 @@
                                 @endforeach
                             </ul>
                             <div class="text-center pt-1 pb-1">
-                                <a href="{{ route('admin.barang.index') }}"
+                                <a href="#"
                                    class="btn btn-primary btn-lg btn-round">
                                     View All
                                 </a>

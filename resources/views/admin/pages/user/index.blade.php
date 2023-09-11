@@ -13,7 +13,7 @@
 
 <x-content>
     <x-slot name="modul">
-        <h1>User</h1>
+        <h1>Pegawai</h1>
     </x-slot>
 
     <x-section>
@@ -21,7 +21,7 @@
         </x-slot>
 
         <x-slot name="header">
-            <h4>Data Users</h4>
+            <h4>Data Pegawai</h4>
             <div class="card-header-form row">
                 <div>
                     <form>
@@ -48,11 +48,11 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Roles</th>
-                            <th style="width:150px">Action</th>
+                            <th style="width:150px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

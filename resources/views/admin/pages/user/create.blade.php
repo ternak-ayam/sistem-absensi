@@ -13,7 +13,7 @@
 @section('content')
     <x-content>
         <x-slot name="modul">
-            @include('admin.partials.back-with-title', ['title' => 'Tambah User'])
+            @include('admin.partials.back-with-title', ['title' => 'Tambah Pegawai'])
         </x-slot>
         <div>
             <form action="{{ route('admin.user.store') }}" enctype="multipart/form-data" method="post"
@@ -48,9 +48,8 @@
                                 <div class="form-group">
                                     <label>Role</label>
                                     <select class="form-control" name="role" required>
-                                        <option value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
                                         <option value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
-                                        <option value="{{ \App\Models\Admin::OWNER }}">Owner</option>
+                                        <option value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
