@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'User')
+@section('title', 'Absensi Pegawai')
 
 @section('css')
 
@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <div class="ml-2">
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-sm btn-primary">
+                <a href="{{ route('admin.presence.create') }}" class="btn btn-sm btn-primary">
                         Tambah Data <i class="fas fa-plus"></i>
                     </a>
                 </div>
@@ -49,29 +49,29 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Roles</th>
+                            <th>Waktu Presensi Masuk</th>
+                            <th>Waktu Presensi Keluar</th>
+                            <th>Telat (Menit)</th>
                             <th style="width:150px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($users as $user)
+                        @forelse($presences as $presence)
                         <tr>
-                            <td>{{ $loop->index + $users->firstItem() }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $loop->index + $presences->firstItem() }}</td>
+                            <td>{{ $presence->user['name'] }}</td>
+                            <td>{{ $presence->attend_at }}</td>
+                            <td>{{ $presence->out_at }}</td>
+                            <td>{{ $presence->late_in_minutes }}</td>
                             <td>
-                                <a href="{{ route('admin.user.edit', $user->id) }}"
+                                <a href="{{ route('admin.user.edit', $presence->id) }}"
                                     class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
                                     data-placement="top" title="" data-original-title="Edit">
                                     <i class="far fa-edit"></i>
                                 </a>
 
-                                <a href="{{ route('admin.user.destroy', $user->id) }}" data-url="#"
-                                    data-id="{{ $user->id }}" data-redirect="#"
+                                <a href="{{ route('admin.user.destroy', $presence->id) }}" data-url="#"
+                                    data-id="{{ $presence->id }}" data-redirect="#"
                                     class="btn btn-sm btn-danger delete">
                                     <i class="fas fa-trash"></i>
                                 </a>
@@ -90,7 +90,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            {{ $users->onEachSide(2)->appends($_GET)->links('admin.partials.pagination') }}
+            {{ $presences->onEachSide(2)->appends($_GET)->links('admin.partials.pagination') }}
         </x-slot>
     </x-section>
 

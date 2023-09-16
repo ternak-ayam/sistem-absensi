@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\Presence;
+use App\Models\User;
+use App\Models\PegawaiPresence;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -12,29 +12,26 @@ class PresensiController extends Controller
 {
     public function index()
     {
-        $users = Presence::where('title', 'like', '%'.\request()->get('search').'%')->paginate(10);
+        $presences = PegawaiPresence::with(['user' => function($query) {
+            $query->where('name', 'like', '%'.\request()->get('search').'%');
+        }])->paginate(10);
 
-        return view('admin.pages.presensi.index', compact('users'));
+        return view('admin.pages.presensi.index', compact('presences'));
     }
 
     public function create()
     {
-        return view('admin.pages.user.create');
+        return view('admin.pages.presensi.create', [
+            'employees' => User::all()
+        ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'username' => ['required', 'unique:admins'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
-            'role' => ['required']
-        ]);
+        $this->rules($request);
+        PegawaiPresence::create($request->all());
 
-        Admin::create($request->all());
-
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.presensi.index'));
     }
 
     public function show($id)
@@ -42,32 +39,35 @@ class PresensiController extends Controller
         //
     }
 
-    public function edit(Admin $admin)
+    public function edit(PegawaiPresence $pegawaiPresence)
     {
-        return view('admin.pages.user.edit', [
-            'user' => $admin
+        return view('admin.pages.presensi.edit', [
+            'pegawaiPresence' => $pegawaiPresence
         ]);
     }
 
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, PegawaiPresence $pegawaiPresence)
     {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'username' => ['required', Rule::unique('admins', 'username')->ignore($admin->id, 'id')],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
-            'role' => ['required']
-        ]);
+        $this->rules($request);
+        $pegawaiPresence->update($request->all());
 
-        $admin->update($request->all());
-
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.presensi.index'));
     }
 
-    public function destroy(Admin $admin)
+    public function destroy(PegawaiPresence $pegawaiPresence)
     {
-        $admin->delete();
+        $pegawaiPresence->delete();
 
         return back();
+    }
+
+    public function rules(Request $request)
+    {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'attend_at' => ['required', 'string'],
+            'out_at' => ['required', 'string'],
+            'late_in_minutes' => ['required']
+        ]);
     }
 }
