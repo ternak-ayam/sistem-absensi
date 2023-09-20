@@ -15,12 +15,12 @@
             data: {
                 labels: [@foreach ($dates as $date) "{{ $date }}", @endforeach],
                 datasets: [{
-                    label: 'Barang Masuk',
-                    data: [@foreach ($productInCount as $productIn) "{{ $productIn }}", @endforeach],
+                    label: 'Total Kehadiran',
+                    data: [@foreach ([] as $productIn) "{{ $productIn }}", @endforeach],
                     borderWidth: 1
                 }, {
-                    label: 'Barang Keluar',
-                    data: [@foreach ($productOutCount as $productOut) "{{ $productOut }}", @endforeach],
+                    label: 'Total Ketidakhadiran',
+                    data: [@foreach ([] as $productOut) "{{ $productOut }}", @endforeach],
                     borderWidth: 1
                 }]
             },
@@ -68,7 +68,7 @@
                                 <h4>Total Pegawai Aktif</h4>
                             </div>
                             <div class="card-body">
-                                {{ $outProducts }}
+                                {{ $activeEmployees }}
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 <h4>Total Pegawai Non-Aktif</h4>
                             </div>
                             <div class="card-body">
-                                {{ $inProducts }}
+                                {{ $inactiveEmployees }}
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 <h4>Total Kehadiran</h4>
                             </div>
                             <div class="card-body">
-                                {{ $totalProducts }}
+                                {{ $totalPresences }}
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Statistics</h4>
+                            <h4>Statistik</h4>
                         </div>
                         <div class="card-body">
                             <div class="chartjs-size-monitor"
@@ -130,11 +130,11 @@
                 <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Riwayat Barang</h4>
+                            <h4>Riwayat Absensi</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                @foreach($products as $product)
+                                @foreach([] as $product)
                                 <li class="media">
                                     <div class="media-body">
                                         <div
@@ -151,7 +151,7 @@
                             <div class="text-center pt-1 pb-1">
                                 <a href="#"
                                    class="btn btn-primary btn-lg btn-round">
-                                    View All
+                                    Lihat Semua
                                 </a>
                             </div>
                         </div>

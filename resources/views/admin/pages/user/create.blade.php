@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah User')
+@section('title', 'Tambah Pegawai')
 
 @section('css')
 
@@ -43,14 +43,6 @@
                                     <label>Email</label>
                                     <input type="email" class="form-control" name="email"
                                            value="{{ old('email') }}" required>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <select class="form-control" name="role" required>
-                                        <option value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
-                                        <option value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
-                                    </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="row">

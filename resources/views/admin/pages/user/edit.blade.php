@@ -46,15 +46,6 @@
                                            value="{{ old('email', $user->email) }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <select class="form-control" name="role" id="role" required>
-                                        <option @if($user->role == \App\Models\Admin::ADMIN) selected @endif value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
-                                        <option @if($user->role == \App\Models\Admin::PEGAWAI) selected @endif value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
-                                        <option @if($user->role == \App\Models\Admin::OWNER) selected @endif value="{{ \App\Models\Admin::OWNER }}">Owner</option>
-                                    </select>
-                                    <div class="invalid-feedback"></div>
-                                </div>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <div class="d-block">

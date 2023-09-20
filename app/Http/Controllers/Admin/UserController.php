@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = Admin::where('name', 'like', '%'.\request()->get('search').'%')->paginate(10);
+        $users = Admin::where('role', Admin::PEGAWAI)->where('name', 'like', '%'.\request()->get('search').'%')->paginate(10);
 
         return view('admin.pages.user.index', compact('users'));
     }
@@ -28,11 +28,11 @@ class UserController extends Controller
             'name' => ['required', 'string'],
             'username' => ['required', 'unique:admins'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
-            'role' => ['required']
+            'password' => ['required', 'confirmed']
         ]);
+        
 
-        Admin::create($request->all());
+        Admin::create(array_merge($request->all(), ['role' => Admin::PEGAWAI]));
 
         return redirect(route('admin.user.index'));
     }
@@ -55,8 +55,7 @@ class UserController extends Controller
             'name' => ['required', 'string'],
             'username' => ['required', Rule::unique('admins', 'username')->ignore($admin->id, 'id')],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
-            'role' => ['required']
+            'password' => ['required', 'confirmed']
         ]);
 
         $admin->update($request->all());
