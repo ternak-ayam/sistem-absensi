@@ -19,9 +19,9 @@ Route::group([], function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('create', [UserController::class, 'create'])->name('create');
             Route::post('/', [UserController::class, 'store'])->name('store');
-            Route::put('{admin}', [UserController::class, 'update'])->name('update');
-            Route::get('{admin}/edit', [UserController::class, 'edit'])->name('edit');
-            Route::get('{admin}/delete', [UserController::class, 'destroy'])->name('destroy');
+            Route::put('{user}', [UserController::class, 'update'])->name('update');
+            Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+            Route::get('{user}/delete', [UserController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('presensi')->as('presence.')->group(function () {
