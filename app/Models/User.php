@@ -10,6 +10,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Timedoor\TmdMembership\traits\Fcmable;
 
+/**
+ *
+ * @mixin
+ */
+
 class User extends Authenticatable implements CanResetPassword
 {
     use HasApiTokens, HasFactory, Notifiable, Fcmable;
@@ -21,8 +26,10 @@ class User extends Authenticatable implements CanResetPassword
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -43,4 +50,9 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getStatusLabel(): string
+    {
+        return $this->status ? "Aktif" : "Tidak Aktif";
+    }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = Admin::where('role', Admin::PEGAWAI)->where('name', 'like', '%'.\request()->get('search').'%')->paginate(10);
+        $users = User::where('name', 'like', '%'.\request()->get('search').'%')->paginate(10);
 
         return view('admin.pages.user.index', compact('users'));
     }
@@ -26,13 +25,13 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'username' => ['required', 'unique:admins'],
+            'username' => ['required', 'unique:users'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed']
         ]);
-        
 
-        Admin::create(array_merge($request->all(), ['role' => Admin::PEGAWAI]));
+
+        User::create(array_merge($request->all()));
 
         return redirect(route('admin.user.index'));
     }
@@ -42,30 +41,31 @@ class UserController extends Controller
         //
     }
 
-    public function edit(Admin $admin)
+    public function edit(User $user)
     {
         return view('admin.pages.user.edit', [
-            'user' => $admin
+            'user' => $user
         ]);
     }
 
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'username' => ['required', Rule::unique('admins', 'username')->ignore($admin->id, 'id')],
+            'username' => ['required', Rule::unique('admins', 'username')->ignore($user->id, 'id')],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed']
+            'password' => ['required', 'confirmed'],
+            'status' => ['required']
         ]);
 
-        $admin->update($request->all());
+        $user->update($request->all());
 
         return redirect(route('admin.user.index'));
     }
 
-    public function destroy(Admin $admin)
+    public function destroy(User $user)
     {
-        $admin->delete();
+        $user->delete();
 
         return back();
     }
