@@ -51,7 +51,7 @@
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Roles</th>
+                            <th>Status</th>
                             <th style="width:150px">Aksi</th>
                         </tr>
                     </thead>
@@ -62,7 +62,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $user->getStatusLabel() }}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit', $user->id) }}"
                                     class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"

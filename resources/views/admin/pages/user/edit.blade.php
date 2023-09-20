@@ -46,6 +46,14 @@
                                            value="{{ old('email', $user->email) }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="form-control" name="status" id="status" required>
+                                        <option @if($user->status) selected @endif value="1">Aktif</option>
+                                        <option @if(!$user->status) selected @endif value="0">Tidak Aktif</option>
+                                    </select>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <div class="d-block">
