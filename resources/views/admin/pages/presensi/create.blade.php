@@ -28,9 +28,12 @@
                             <div class="card-body">
                                 <div class="section-title mt-0">Informasi Dasar</div>
                                 <div class="form-group">
-                                    <label>Nama</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                           required>
+                                    <label>Nama Pegawai</label>
+                                    <select class="form-control" name="name" required>
+                                        @foreach ($employees as $employee)
+                                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
@@ -43,14 +46,6 @@
                                     <label>Email</label>
                                     <input type="email" class="form-control" name="email"
                                            value="{{ old('email') }}" required>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <select class="form-control" name="role" required>
-                                        <option value="{{ \App\Models\Admin::PEGAWAI }}">Pegawai</option>
-                                        <option value="{{ \App\Models\Admin::ADMIN }}">Admin</option>
-                                    </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="row">
