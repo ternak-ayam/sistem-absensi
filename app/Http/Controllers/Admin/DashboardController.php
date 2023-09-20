@@ -3,20 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\PegawaiPresence;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        $employees = User::count();
+        $activeEmployees = User::where('status', true)->count();
+        $inactiveEmployees = User::where('status', false)->count();
+        $totalPresences = PegawaiPresence::count();
+
         return view('admin.pages.dashboard.index', [
             'dates' => [],
-            'employees' => 0,
-            'activeEmployees' => 0,
-            'inactiveEmployees' => 0,
-            'totalPresences' => 0,
+            'employees' => $employees,
+            'activeEmployees' => $activeEmployees,
+            'inactiveEmployees' => $inactiveEmployees,
+            'totalPresences' => $totalPresences
         ]);
     }
 }
