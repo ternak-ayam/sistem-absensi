@@ -35,9 +35,9 @@
                     </form>
                 </div>
                 <div class="ml-2">
-                <a href="{{ route('admin.presence.create') }}" class="btn btn-sm btn-primary">
+ {{--               <a href="{{ route('admin.presence.create') }}" class="btn btn-sm btn-primary">
                         Tambah Data <i class="fas fa-plus"></i>
-                    </a>
+                    </a>--}}
                 </div>
             </div>
         </x-slot>

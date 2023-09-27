@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HashPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +18,7 @@ use Timedoor\TmdMembership\traits\Fcmable;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, Fcmable;
+    use HasApiTokens, HasFactory, Notifiable, Fcmable, HashPassword;
 
     /**
      * The attributes that are mass assignable.
