@@ -26,13 +26,13 @@ Route::group([], function () {
         });
 
         Route::prefix('absensi-pegawai')->as('pegawai.presence.')->group(function () {
-            Route::get('/', [PresensiController::class, 'index'])->name('index');
-            Route::get('create', [PresensiController::class, 'create'])->name('create');
+            Route::get('/', [PegawaiPresensiController::class, 'index'])->name('index');
+            Route::get('create', [PegawaiPresensiController::class, 'create'])->name('create');
         });
 
         Route::prefix('presensi')->as('presence.')->group(function () {
-            Route::get('/', [PegawaiPresensiController::class, 'index'])->name('index');
-            Route::get('create', [PegawaiPresensiController::class, 'create'])->name('create');
+            Route::get('/', [PresensiController::class, 'index'])->name('index');
+            Route::get('create', [PresensiController::class, 'create'])->name('create');
         });
     });
 });

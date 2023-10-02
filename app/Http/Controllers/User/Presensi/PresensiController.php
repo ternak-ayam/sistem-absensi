@@ -18,12 +18,12 @@ class PresensiController extends Controller
             $query->where('name', 'like', '%'.\request()->get('search').'%');
         }])->paginate(10);
 
-        return view('admin.pages.presensi.index', compact('presences'));
+        return view('admin.pages.user.presensi.index', compact('presences'));
     }
 
     public function create()
     {
-        return view('admin.pages.presensi.create', [
+        return view('admin.pages.user.presensi.create', [
             'employees' => User::all()
         ]);
     }
@@ -43,7 +43,7 @@ class PresensiController extends Controller
 
     public function edit(PegawaiPresence $pegawaiPresence)
     {
-        return view('admin.pages.presensi.edit', [
+        return view('admin.pages.user.presensi.edit', [
             'pegawaiPresence' => $pegawaiPresence
         ]);
     }
