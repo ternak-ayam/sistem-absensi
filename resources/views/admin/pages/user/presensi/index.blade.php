@@ -21,7 +21,7 @@
         </x-slot>
 
         <x-slot name="header">
-            <h4>Data Presensi</h4>
+            <h4>Data Presensi Pegawai</h4>
             <div class="card-header-form row">
                 <div>
                     <form>
@@ -49,7 +49,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Waktu Presensi</th>
+                            <th>Waktu Presensi Masuk</th>
+                            <th>Waktu Presensi Keluar</th>
+                            <th>Telat (Menit)</th>
                             <th style="width:150px">Aksi</th>
                         </tr>
                     </thead>
@@ -77,7 +79,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4">
+                            <td colspan="6">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>

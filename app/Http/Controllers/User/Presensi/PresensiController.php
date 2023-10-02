@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User\Presensi;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\PegawaiPresence;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use function back;
+use function redirect;
+use function view;
 
-class CatatanController extends Controller
+class PresensiController extends Controller
 {
     public function index()
     {

@@ -20,13 +20,13 @@
                 <i class="fas fa-users"></i> <span>Pegawai</span>
             </a>
         </li>
-{{--        <li {{ is_nav_active('notes') }}>
-            <a class="nav-link" href="{{ route('admin.note.index') }}">
-                <i class="fas fa-clipboard"></i> <span>Absensi</span>
-            </a>
-        </li>--}}
         <li {{ is_nav_active('presensi') }}>
             <a class="nav-link" href="{{ route('admin.presence.index') }}">
+                <i class="fas fa-clipboard"></i> <span>Absensi</span>
+            </a>
+        </li>
+        <li {{ is_nav_active('absensi-pegawai') }}>
+            <a class="nav-link" href="{{ route('admin.pegawai.presence.index') }}">
                 <i class="fas fa-paste"></i> <span>Absensi Pegawai</span>
             </a>
         </li>
