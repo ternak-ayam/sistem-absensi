@@ -20,12 +20,14 @@ class PresensiSeeder extends Seeder
             [
                 'name' => 'Presensi Masuk',
                 'code' => Str::random(64),
-                'type' => PresenceTypeEnum::IN
+                'type' => PresenceTypeEnum::IN,
+                'valid_until' => '08:00'
             ],
             [
                 'name' => 'Presensi Keluar',
                 'code' => Str::random(64),
-                'type' => PresenceTypeEnum::OUT
+                'type' => PresenceTypeEnum::OUT,
+                'valid_until' => '08:00'
             ]
         ];
 

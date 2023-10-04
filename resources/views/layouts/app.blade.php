@@ -8,8 +8,12 @@
 
 <body>
 <div class="main-wrapper main-wrapper-1" id="app">
+    <div class="navbar-bg"></div>
+    <nav class="navbar navbar-expand-lg main-navbar">
+        @include('admin.partials.topnav')
+    </nav>
     <!-- Main Content -->
-    <div>
+    <div class="main-content">
         <!-- Page Content -->
         @yield('content')
     </div>

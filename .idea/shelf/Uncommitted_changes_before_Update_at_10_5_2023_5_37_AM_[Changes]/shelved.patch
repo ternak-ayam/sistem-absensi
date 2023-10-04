@@ -1,0 +1,67 @@
+Index: app/Http/Controllers/User/Presensi/PresensiController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers\\User\\Presensi;\r\n\r\nuse App\\Http\\Controllers\\Controller;\r\nuse App\\Models\\PegawaiPresence;\r\nuse App\\Models\\User;\r\nuse Illuminate\\Http\\Request;\r\nuse function back;\r\nuse function redirect;\r\nuse function view;\r\n\r\nclass PresensiController extends Controller\r\n{\r\n    public function index()\r\n    {\r\n        $presences = PegawaiPresence::with(['user' => function($query) {\r\n            $query->where('name', 'like', '%'.\\request()->get('search').'%');\r\n        }])->paginate(10);\r\n\r\n        return view('admin.pages.user.presensi.index', compact('presences'));\r\n    }\r\n\r\n    public function create()\r\n    {\r\n        return view('admin.pages.user.presensi.create', [\r\n            'employees' => User::all()\r\n        ]);\r\n    }\r\n\r\n    public function store(Request $request)\r\n    {\r\n        $this->rules($request);\r\n        PegawaiPresence::create($request->all());\r\n\r\n        return redirect(route('admin.presensi.index'));\r\n    }\r\n\r\n    public function show($id)\r\n    {\r\n        //\r\n    }\r\n\r\n    public function edit(PegawaiPresence $pegawaiPresence)\r\n    {\r\n        return view('admin.pages.user.presensi.edit', [\r\n            'pegawaiPresence' => $pegawaiPresence\r\n        ]);\r\n    }\r\n\r\n    public function update(Request $request, PegawaiPresence $pegawaiPresence)\r\n    {\r\n        $this->rules($request);\r\n        $pegawaiPresence->update($request->all());\r\n\r\n        return redirect(route('admin.presensi.index'));\r\n    }\r\n\r\n    public function destroy(PegawaiPresence $pegawaiPresence)\r\n    {\r\n        $pegawaiPresence->delete();\r\n\r\n        return back();\r\n    }\r\n\r\n    public function rules(Request $request)\r\n    {\r\n        $request->validate([\r\n            'user_id' => ['required', 'exists:users,id'],\r\n            'attend_at' => ['required', 'string'],\r\n            'out_at' => ['required', 'string'],\r\n            'late_in_minutes' => ['required']\r\n        ]);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/Http/Controllers/User/Presensi/PresensiController.php b/app/Http/Controllers/User/Presensi/PresensiController.php
+--- a/app/Http/Controllers/User/Presensi/PresensiController.php	(revision 37614f25a8a39f22e302743d340382df03cf27ad)
++++ b/app/Http/Controllers/User/Presensi/PresensiController.php	(date 1696250628631)
+@@ -4,6 +4,7 @@
+ 
+ use App\Http\Controllers\Controller;
+ use App\Models\PegawaiPresence;
++use App\Models\Presence;
+ use App\Models\User;
+ use Illuminate\Http\Request;
+ use function back;
+@@ -31,7 +32,15 @@
+     public function store(Request $request)
+     {
+         $this->rules($request);
+-        PegawaiPresence::create($request->all());
++
++        $presence = Presence::where('code', $request->code)->first();
++
++        $late = now()->timestamp > $presence->valid_until;
++        
++        $request->user()->presensi()->create([
++            'attend_at' => now(),
++            'late_in_minutes' => $late
++        ]);
+ 
+         return redirect(route('admin.presensi.index'));
+     }
+Index: database/seeders/PresensiSeeder.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace Database\\Seeders;\r\n\r\nuse App\\Models\\Presence;\r\nuse Illuminate\\Database\\Seeder;\r\nuse Illuminate\\Support\\Str;\r\n\r\nclass PresensiSeeder extends Seeder\r\n{\r\n    /**\r\n     * Run the database seeds.\r\n     *\r\n     * @return void\r\n     */\r\n    public function run()\r\n    {\r\n        $data = [\r\n            [\r\n                'name' => 'Presensi Masuk',\r\n                'code' => Str::random(64)\r\n            ],\r\n            [\r\n                'name' => 'Presensi Keluar',\r\n                'code' => Str::random(64)\r\n            ]\r\n        ];\r\n\r\n        Presence::create($data);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/database/seeders/PresensiSeeder.php b/database/seeders/PresensiSeeder.php
+--- a/database/seeders/PresensiSeeder.php	(revision 37614f25a8a39f22e302743d340382df03cf27ad)
++++ b/database/seeders/PresensiSeeder.php	(date 1696250498323)
+@@ -18,7 +18,8 @@
+         $data = [
+             [
+                 'name' => 'Presensi Masuk',
+-                'code' => Str::random(64)
++                'code' => Str::random(64),
++                'valid_until' => ''
+             ],
+             [
+                 'name' => 'Presensi Keluar',
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM__Changes_1.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM__Changes_1.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM__Changes_1.xml	(revision 37614f25a8a39f22e302743d340382df03cf27ad)
++++ /dev/null	(revision 37614f25a8a39f22e302743d340382df03cf27ad)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM_[Changes]1" date="1695808611295" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2023_5_56_PM_[Changes]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 9/27/2023 5:56 PM [Changes]" />
+-</changelist>
+\ No newline at end of file

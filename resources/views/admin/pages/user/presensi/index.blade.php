@@ -49,8 +49,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Waktu Presensi Masuk</th>
-                            <th>Waktu Presensi Keluar</th>
+                            <th>Tipe Presensi</th>
+                            <th>Waktu Presensi</th>
                             <th>Telat (Menit)</th>
                             <th style="width:150px">Aksi</th>
                         </tr>
@@ -60,22 +60,9 @@
                         <tr>
                             <td>{{ $loop->index + $presences->firstItem() }}</td>
                             <td>{{ $presence->user['name'] }}</td>
-                            <td>{{ $presence->attend_at }}</td>
-                            <td>{{ $presence->out_at }}</td>
+                            <td>{{ $presence->type }}</td>
+                            <td>{{ $presence->scanned_at }}</td>
                             <td>{{ $presence->late_in_minutes }}</td>
-                            <td>
-                                <a href="{{ route('admin.user.edit', $presence->id) }}"
-                                    class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
-                                    data-placement="top" title="" data-original-title="Edit">
-                                    <i class="far fa-edit"></i>
-                                </a>
-
-                                <a href="{{ route('admin.user.destroy', $presence->id) }}" data-url="#"
-                                    data-id="{{ $presence->id }}" data-redirect="#"
-                                    class="btn btn-sm btn-danger delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
                         </tr>
                         @empty
                         <tr>
