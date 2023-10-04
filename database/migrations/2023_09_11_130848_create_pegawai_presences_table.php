@@ -16,8 +16,9 @@ class CreatePegawaiPresencesTable extends Migration
         Schema::create('pegawai_presences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->dateTime('attend_at');
-            $table->dateTime('out_at');
+            $table->unsignedBigInteger('presence_id');
+            $table->dateTime('attend_at')->nullable();
+            $table->dateTime('out_at')->nullable();
             $table->double('late_in_minutes')->default(0);
             $table->timestamps();
         });

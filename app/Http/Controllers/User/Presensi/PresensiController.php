@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User\Presensi;
 
 use App\Http\Controllers\Controller;
 use App\Models\PegawaiPresence;
+use App\Models\Presence;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use function back;
 use function redirect;
 use function view;
@@ -28,10 +30,23 @@ class PresensiController extends Controller
         ]);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function store(Request $request)
     {
         $this->rules($request);
-        PegawaiPresence::create($request->all());
+
+        $presence = Presence::where('code', $request->input('code'))->first();
+
+        if(!$presence) {
+            throw ValidationException::withMessages(['status' => 'QR Code Tidak Valid']);
+        }
+
+        PegawaiPresence::create(array_merge($request->all(), [
+            'presence_id' => $presence->id,
+            'late_in_minutes' => isset($request->attend_at) ? now()->diffInMinutes($request->attend_at) : 0
+        ]));
 
         return redirect(route('admin.presensi.index'));
     }
@@ -51,7 +66,10 @@ class PresensiController extends Controller
     public function update(Request $request, PegawaiPresence $pegawaiPresence)
     {
         $this->rules($request);
-        $pegawaiPresence->update($request->all());
+
+        $pegawaiPresence->update([
+            'out_at' => now()
+        ]);
 
         return redirect(route('admin.presensi.index'));
     }
@@ -67,9 +85,8 @@ class PresensiController extends Controller
     {
         $request->validate([
             'user_id' => ['required', 'exists:users,id'],
-            'attend_at' => ['required', 'string'],
-            'out_at' => ['required', 'string'],
-            'late_in_minutes' => ['required']
+            'attend_at' => ['sometimes', 'string'],
+            'out_at' => ['sometimes', 'string']
         ]);
     }
 }

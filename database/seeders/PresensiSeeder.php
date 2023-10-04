@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\PresenceTypeEnum;
 use App\Models\Presence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -18,14 +19,16 @@ class PresensiSeeder extends Seeder
         $data = [
             [
                 'name' => 'Presensi Masuk',
-                'code' => Str::random(64)
+                'code' => Str::random(64),
+                'type' => PresenceTypeEnum::IN
             ],
             [
                 'name' => 'Presensi Keluar',
-                'code' => Str::random(64)
+                'code' => Str::random(64),
+                'type' => PresenceTypeEnum::OUT
             ]
         ];
 
-        Presence::create($data);
+        Presence::insert($data);
     }
 }
