@@ -15,13 +15,14 @@ use function view;
 
 class PresensiController extends Controller
 {
-    public function index()
+    public function index(Presence $presence)
     {
-        $presences = PegawaiPresence::with(['user' => function($query) {
-            $query->where('name', 'like', '%'.\request()->get('search').'%');
+        $presences = $presence->presences()->with(['user' => function ($query) {
+            $query->where('user_id', request()->user()->id)
+                ->where('name', 'like', '%' . \request()->get('search') . '%');
         }])->paginate(10);
 
-        return view('admin.pages.user.presensi.index', compact('presences'));
+        return view('admin.pages.presensi.list.index', compact('presences', 'presence'));
     }
 
     public function create()
@@ -54,7 +55,7 @@ class PresensiController extends Controller
             'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
         ]));
 
-        return redirect(route('admin.presensi.index'));
+        return redirect(route('user.presence.user.index'));
     }
 
     public function show($id)
