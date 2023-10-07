@@ -36,11 +36,11 @@ class PresensiController extends Controller
     /**
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, string $code)
     {
         $user = $request->user();
 
-        $presence = Presence::where('code', $request->input('code'))->first();
+        $presence = Presence::where('code', $code)->first();
 
         if(!$presence) {
             throw ValidationException::withMessages(['status' => 'QR Code Tidak Valid']);
@@ -48,12 +48,12 @@ class PresensiController extends Controller
 
         $late = now()->format('H:i') <= $presence->valid_until;
 
-        $user->presences()->create(array_merge($request->all(), [
+        $user->presences()->create([
             'presence_id' => $presence->id,
             'scanned_at' => now(),
             'type' => $presence->type,
             'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
-        ]));
+        ]);
 
         return redirect(route('user.presence.user.index'));
     }

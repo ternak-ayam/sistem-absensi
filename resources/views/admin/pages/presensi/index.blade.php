@@ -56,6 +56,7 @@
                             <th>Jumlah Hadir</th>
                             <th>Jumlah Belum Hadir</th>
                             <th>Jumlah Telat</th>
+                            <th>QR Code</th>
                             <th style="width:150px">Aksi</th>
                         </tr>
                         </thead>
@@ -68,6 +69,11 @@
                                 <td>{{ $presence->getAttends() }}</td>
                                 <td>{{ $presence->getNotAttends() }}</td>
                                 <td>{{ $presence->getLates() }}</td>
+                                <td>
+                                    <a href="{{ route('admin.presence.download', $presence->code) }}">
+                                        {!! QrCode::size(200)->generate($presence->code) !!}
+                                    </a>
+                                </td>
                                 <td>
                                     @auth('web')
                                         <a href="{{ route('user.presence.user.index', $presence->id) }}"

@@ -7,8 +7,10 @@ use App\Models\Presence;
 use App\Models\User;
 use App\Models\PegawaiPresence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PresensiController extends Controller
 {
@@ -27,6 +29,7 @@ class PresensiController extends Controller
     public function store(Request $request)
     {
         $this->rules($request);
+
         Presence::create(array_merge($request->all(), [
             'code' => Str::random(64)
         ]));
@@ -59,6 +62,13 @@ class PresensiController extends Controller
         $presence->delete();
 
         return back();
+    }
+
+    public function download($code)
+    {
+        QrCode::generate($code, storage_path("app/$code.svg"));
+
+        return Storage::disk('local')->download("$code.svg");
     }
 
     public function rules(Request $request)

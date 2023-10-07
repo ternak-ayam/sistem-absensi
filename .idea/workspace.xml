@@ -3,11 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="49824847-50a9-4be7-95d3-1b2ec8c4214d" name="Changes" comment="">
       <changelist_data name="xarthaa" email="manager.arthachan@gmail.com" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sistem-absensi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sistem-absensi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PresensiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PresensiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/Presensi/PresensiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/Presensi/PresensiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/presensi/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/presensi/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/user/dashboard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/user/dashboard/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/script.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="6ff9f4c1-2e93-4704-8ce4-142baa57c961" name="Controllers" comment="" />
     <list id="4541c7f8-d6f7-4647-bc6f-e4f29a99b7da" name="Layouting" comment="" />
@@ -141,10 +150,8 @@
       <path value="$PROJECT_DIR$/vendor/kreait/firebase-tokens" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
-      <path value="$PROJECT_DIR$/vendor/giggsey/locale" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
-      <path value="$PROJECT_DIR$/vendor/giggsey/libphonenumber-for-php" />
       <path value="$PROJECT_DIR$/vendor/spatie/enum" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
@@ -155,9 +162,7 @@
       <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/rize/uri-template" />
-      <path value="$PROJECT_DIR$/vendor/kreait/clock" />
       <path value="$PROJECT_DIR$/vendor/kreait/laravel-firebase" />
-      <path value="$PROJECT_DIR$/vendor/google/crc32" />
       <path value="$PROJECT_DIR$/vendor/google/auth" />
       <path value="$PROJECT_DIR$/vendor/google/cloud-storage" />
       <path value="$PROJECT_DIR$/vendor/google/cloud-core" />
@@ -181,6 +186,15 @@
       <path value="$PROJECT_DIR$/vendor/league/config" />
       <path value="$PROJECT_DIR$/vendor/nette/schema" />
       <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/tightenco/ziggy" />
+      <path value="$PROJECT_DIR$/vendor/beste/json" />
+      <path value="$PROJECT_DIR$/vendor/beste/clock" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
     </include_path>
   </component>
   <component name="ProjectId" id="2VbuJviPaCXGkXe7J2xZWL1psUp" />
@@ -195,8 +209,9 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/artha/Documents/jobs/sistem-absensi/app/Http/Controllers/Admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/artha/Documents/jobs/sistem-absensi/app/Http/Controllers/User&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -204,11 +219,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/User" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/resources/views/admin/pages/presensi/list" />
       <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="C:\Users\arthaputra\jobs\sistem-absensi\app\Http\Controllers\User\Dashboard" />
-      <recent name="C:\Users\arthaputra\jobs\sistem-absensi\resources\views\admin\pages\user\dashboard" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\arthaputra\jobs\sistem-absensi\resources\views" />
@@ -242,7 +257,8 @@
       <workItem from="1696247338795" duration="3852000" />
       <workItem from="1696455360167" duration="3492000" />
       <workItem from="1696657125812" duration="5059000" />
-      <workItem from="1696662213237" duration="885000" />
+      <workItem from="1696662213237" duration="6923000" />
+      <workItem from="1696680923531" duration="2636000" />
     </task>
     <task id="LOCAL-00001" summary="User">
       <created>1695810122893</created>
@@ -314,7 +330,70 @@
       <option name="project" value="LOCAL" />
       <updated>1696662245910</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="routes">
+      <created>1696663277601</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1696663277601</updated>
+    </task>
+    <task id="LOCAL-00012" summary="layouting">
+      <created>1696663286485</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1696663286485</updated>
+    </task>
+    <task id="LOCAL-00013" summary="controllers">
+      <created>1696663291832</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696663291832</updated>
+    </task>
+    <task id="LOCAL-00014" summary="controllers">
+      <created>1696663302992</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696663302992</updated>
+    </task>
+    <task id="LOCAL-00015" summary="routes">
+      <created>1696667155781</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1696667155781</updated>
+    </task>
+    <task id="LOCAL-00016" summary="models">
+      <created>1696667160608</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1696667160608</updated>
+    </task>
+    <task id="LOCAL-00017" summary="migrations">
+      <created>1696667166025</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1696667166025</updated>
+    </task>
+    <task id="LOCAL-00018" summary="layouting">
+      <created>1696667175156</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1696667175156</updated>
+    </task>
+    <task id="LOCAL-00019" summary="controller">
+      <created>1696667183048</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1696667183048</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,11 +418,12 @@
     <MESSAGE value="Damnn" />
     <MESSAGE value="User" />
     <MESSAGE value="commmit" />
+    <MESSAGE value="controllers" />
     <MESSAGE value="routes" />
     <MESSAGE value="models" />
     <MESSAGE value="migrations" />
     <MESSAGE value="layouting" />
-    <MESSAGE value="controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="controllers" />
+    <MESSAGE value="controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="controller" />
   </component>
 </project>

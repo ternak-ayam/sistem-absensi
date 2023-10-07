@@ -34,6 +34,8 @@ Route::group([], function () {
             Route::get('create', [PresensiController::class, 'create'])->name('create');
             Route::get('{presence}/destroy', [PresensiController::class, 'destroy'])->name('destroy');
             Route::post('/', [PresensiController::class, 'store'])->name('store');
+
+            Route::get('/{code}/download', [PresensiController::class, 'download'])->name('download');
         });
     });
 });
