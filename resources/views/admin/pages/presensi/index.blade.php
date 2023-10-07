@@ -71,11 +71,16 @@
                                     data-placement="top" title="" data-original-title="View">
                                     <i class="far fa-eye"></i>
                                 </a>
+                                <a href="{{ route('admin.presence.destroy', $presence->id) }}"
+                                   class="btn btn-icon btn-sm btn-danger" data-toggle="tooltip"
+                                   data-placement="top" title="" data-original-title="Delete">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4">
+                            <td colspan="7">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>
