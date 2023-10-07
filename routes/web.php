@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->get('/', function () {
-    return "OK";
+Route::middleware('auth')->as('user')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');

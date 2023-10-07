@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Presensi;
 
+use App\Enums\PresenceTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Models\PegawaiPresence;
 use App\Models\Presence;
@@ -35,7 +36,7 @@ class PresensiController extends Controller
      */
     public function store(Request $request)
     {
-        $this->rules($request);
+        $user = $request->user();
 
         $presence = Presence::where('code', $request->input('code'))->first();
 
@@ -43,9 +44,13 @@ class PresensiController extends Controller
             throw ValidationException::withMessages(['status' => 'QR Code Tidak Valid']);
         }
 
-        PegawaiPresence::create(array_merge($request->all(), [
+        $late = now()->format('H:i') <= $presence->valid_until;
+
+        $user->presences()->create(array_merge($request->all(), [
             'presence_id' => $presence->id,
-            'late_in_minutes' => isset($request->attend_at) ? now()->diffInMinutes($request->attend_at) : 0
+            'scanned_at' => now(),
+            'type' => $presence->type,
+            'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
         ]));
 
         return redirect(route('admin.presensi.index'));
@@ -63,17 +68,6 @@ class PresensiController extends Controller
         ]);
     }
 
-    public function update(Request $request, PegawaiPresence $pegawaiPresence)
-    {
-        $this->rules($request);
-
-        $pegawaiPresence->update([
-            'out_at' => now()
-        ]);
-
-        return redirect(route('admin.presensi.index'));
-    }
-
     public function destroy(PegawaiPresence $pegawaiPresence)
     {
         $pegawaiPresence->delete();
@@ -84,9 +78,7 @@ class PresensiController extends Controller
     public function rules(Request $request)
     {
         $request->validate([
-            'user_id' => ['required', 'exists:users,id'],
-            'attend_at' => ['sometimes', 'string'],
-            'out_at' => ['sometimes', 'string']
+            'user_id' => ['required', 'exists:users,id']
         ]);
     }
 }

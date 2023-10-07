@@ -6,6 +6,7 @@ use App\Models\Traits\HashPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,5 +56,10 @@ class User extends Authenticatable implements CanResetPassword
     public function getStatusLabel(): string
     {
         return $this->status ? "Aktif" : "Tidak Aktif";
+    }
+
+    public function presences(): HasMany
+    {
+        return $this->hasMany(PegawaiPresence::class);
     }
 }

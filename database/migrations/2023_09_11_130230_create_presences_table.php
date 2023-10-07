@@ -17,6 +17,8 @@ class CreatePresencesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
+            $table->string('type');
+            $table->string('valid_until');
             $table->timestamps();
         });
     }

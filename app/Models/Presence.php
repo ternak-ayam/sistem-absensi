@@ -10,4 +10,6 @@ class Presence extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $dates = ['valid_until'];
 }
