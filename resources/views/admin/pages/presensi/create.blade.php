@@ -16,7 +16,7 @@
             @include('admin.partials.back-with-title', ['title' => 'Tambah Pegawai'])
         </x-slot>
         <div>
-            <form action="{{ route('admin.user.store') }}" enctype="multipart/form-data" method="post"
+            <form action="{{ route('admin.presence.store') }}" enctype="multipart/form-data" method="post"
                   class="needs-validation" novalidate onkeydown="return event.key !== 'Enter';">
                 @csrf
                 <div class="row">
@@ -28,55 +28,16 @@
                             <div class="card-body">
                                 <div class="section-title mt-0">Informasi Dasar</div>
                                 <div class="form-group">
-                                    <label>Nama Pegawai</label>
-                                    <select class="form-control" name="name" required>
-                                        @foreach ($employees as $employee)
-                                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" name="username" value="{{ old('username') }}"
+                                    <label>Judul Kegiatan</label>
+                                    <input type="text" class="form-control" name="title" value="{{ old('username') }}"
                                            required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" required>
+                                    <label>Batas Waktu Kehadiran</label>
+                                    <input type="time" class="form-control" name="valid_until"
+                                           value="{{ old('valid_until') }}" required>
                                     <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-6">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                        </div>
-                                        <div class="input-group">
-                                            <input id="password" type="password" class="form-control" name="password"
-                                                   tabindex="2" required>
-                                            <div class="input-group-append">
-                                            <span class="input-group-text cursor-pointer">
-                                                <i class="fas fa-eye-slash" id="togglePassword"></i>
-                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <div class="d-block">
-                                            <label for="passwordConfirmation" class="control-label">Konfirmasi Password</label>
-                                        </div>
-                                        <div class="input-group">
-                                            <input id="passwordConfirmation" type="password" class="form-control" name="password_confirmation"
-                                                   tabindex="2" required>
-                                            <div class="input-group-append">
-                                            <span class="input-group-text cursor-pointer">
-                                                <i class="fas fa-eye-slash" id="togglePasswordConfirmation"></i>
-                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

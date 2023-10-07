@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
-@section('title', 'Dashboard')
+@section('title', 'Profil')
 
 @section('css')
 
@@ -13,32 +13,28 @@
 @section('content')
     <x-content>
         <x-slot name="modul">
-            <h1>Profile</h1>
+            <h1>Profil</h1>
         </x-slot>
         <section class="section">
             <div class="section-body">
-                <h2 class="section-title">Hi, Ujang!</h2>
+                <h2 class="section-title">Hi, {{ $user->name }}!</h2>
                 <p class="section-lead">
-                    Change information about yourself on this page.
+                    Ubah informasi tentang dirimu disini
                 </p>
 
                 <div class="row mt-sm-4">
                     <div class="col-12 col-md-12 col-lg-5">
                         <div class="card profile-widget">
                             <div class="profile-widget-header">
-                                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
+                                <img alt="image" src="{{ $user->getImageUrl() }}" class="rounded-circle profile-widget-picture">
                                 <div class="profile-widget-items">
                                     <div class="profile-widget-item">
-                                        <div class="profile-widget-item-label">Posts</div>
+                                        <div class="profile-widget-item-label">Kehadiran</div>
                                         <div class="profile-widget-item-value">187</div>
                                     </div>
                                     <div class="profile-widget-item">
-                                        <div class="profile-widget-item-label">Followers</div>
+                                        <div class="profile-widget-item-label">Ketidakhadiran</div>
                                         <div class="profile-widget-item-value">6,8K</div>
-                                    </div>
-                                    <div class="profile-widget-item">
-                                        <div class="profile-widget-item-label">Following</div>
-                                        <div class="profile-widget-item-value">2,1K</div>
                                     </div>
                                 </div>
                             </div>

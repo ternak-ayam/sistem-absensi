@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Absensi Pegawai')
+@section('title', 'Presensi Pegawai')
 
 @section('css')
 
@@ -13,7 +13,7 @@
 
 <x-content>
     <x-slot name="modul">
-        <h1>Presensi</h1>
+        <h1>Presensi <span class="text-primary">{{ $presence->title }}</span></h1>
     </x-slot>
 
     <x-section>
@@ -21,7 +21,7 @@
         </x-slot>
 
         <x-slot name="header">
-            <h4>Data Presensi</h4>
+            <h4>Data Presensi Pegawai</h4>
             <div class="card-header-form row">
                 <div>
                     <form>
@@ -35,9 +35,6 @@
                     </form>
                 </div>
                 <div class="ml-2">
-                <a href="{{ route('admin.presence.create') }}" class="btn btn-sm btn-primary">
-                        Tambah Data <i class="fas fa-plus"></i>
-                    </a>
                 </div>
             </div>
         </x-slot>
@@ -48,34 +45,24 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kegiatan</th>
-                            <th>Batas Waktu Kehadiran</th>
-                            <th>Jumlah Hadir</th>
-                            <th>Jumlah Belum Hadir</th>
-                            <th>Jumlah Telat</th>
-                            <th style="width:150px">Aksi</th>
+                            <th>Nama</th>
+                            <th>Waktu Presensi</th>
+                            <th>Telat (Menit)</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($presences as $presence)
                         <tr>
                             <td>{{ $loop->index + $presences->firstItem() }}</td>
-                            <td>{{ $presence->title }}</td>
-                            <td>{{ $presence->valid_until }}</td>
-                            <td>{{ $presence->getAttends() }}</td>
-                            <td>{{ $presence->getNotAttends() }}</td>
-                            <td>{{ $presence->getLates() }}</td>
-                            <td>
-                                <a href="{{ route('admin.pegawai.presence.index', $presence->id) }}"
-                                    class="btn btn-icon btn-sm btn-primary" data-toggle="tooltip"
-                                    data-placement="top" title="" data-original-title="View">
-                                    <i class="far fa-eye"></i>
-                                </a>
-                            </td>
+                            <td>{{ $presence->user['name'] }}</td>
+                            <td>{{ $presence->attend_at }}</td>
+                            <td>{{ $presence->late_in_minutes }}</td>
+                            <td>{{ $presence->getPresenceStatus() }}</td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4">
+                            <td colspan="5">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>
