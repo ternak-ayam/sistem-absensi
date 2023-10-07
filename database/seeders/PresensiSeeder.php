@@ -18,15 +18,8 @@ class PresensiSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Presensi Masuk',
+                'title' => 'Presensi Jalan Santai',
                 'code' => Str::random(64),
-                'type' => PresenceTypeEnum::IN,
-                'valid_until' => '08:00'
-            ],
-            [
-                'name' => 'Presensi Keluar',
-                'code' => Str::random(64),
-                'type' => PresenceTypeEnum::OUT,
                 'valid_until' => '08:00'
             ]
         ];

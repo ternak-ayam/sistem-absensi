@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HandleUpload;
 use App\Models\Traits\HashPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,7 +20,7 @@ use Timedoor\TmdMembership\traits\Fcmable;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable, Fcmable, HashPassword;
+    use HasApiTokens, HasFactory, Notifiable, Fcmable, HashPassword, HandleUpload;
 
     /**
      * The attributes that are mass assignable.
@@ -52,6 +53,11 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageUrl(): string
+    {
+        return 'https://ui-avatars.com/api/?name=' . $this->name . '&background=ffa426&color=fff';
+    }
 
     public function getStatusLabel(): string
     {
