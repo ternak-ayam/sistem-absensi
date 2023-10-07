@@ -15,9 +15,8 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('code');
-            $table->string('type');
+            $table->string('title');
             $table->string('valid_until');
             $table->timestamps();
         });
