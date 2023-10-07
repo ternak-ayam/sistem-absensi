@@ -14,7 +14,7 @@ class PresensiController extends Controller
 {
     public function index()
     {
-        $presences = Presence::orderby('id', 'DESC')->paginate(10);
+        $presences = Presence::where('title', 'like','%'.request()->get('search').'%')->orderby('id', 'DESC')->paginate(10);
 
         return view('admin.pages.presensi.index', compact('presences'));
     }
@@ -39,10 +39,10 @@ class PresensiController extends Controller
         //
     }
 
-    public function edit(PegawaiPresence $pegawaiPresence)
+    public function edit(Presence $presence)
     {
         return view('admin.pages.presensi.edit', [
-            'pegawaiPresence' => $pegawaiPresence
+            'pegawai' => $presence
         ]);
     }
 
@@ -54,9 +54,9 @@ class PresensiController extends Controller
         return redirect(route('admin.presence.index'));
     }
 
-    public function destroy(PegawaiPresence $pegawaiPresence)
+    public function destroy(Presence $presence)
     {
-        $pegawaiPresence->delete();
+        $presence->delete();
 
         return back();
     }
