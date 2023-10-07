@@ -32,6 +32,7 @@ Route::group([], function () {
         Route::prefix('presensi')->as('presence.')->group(function () {
             Route::get('/', [PresensiController::class, 'index'])->name('index');
             Route::get('create', [PresensiController::class, 'create'])->name('create');
+            Route::get('{presence}/destroy', [PresensiController::class, 'destroy'])->name('destroy');
             Route::post('/', [PresensiController::class, 'store'])->name('store');
         });
     });
