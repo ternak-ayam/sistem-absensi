@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\PegawaiPresensiController;
 use App\Http\Controllers\Admin\PresensiController;
-use App\Http\Controllers\User\Presensi\PresensiController as PegawaiPresensiController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +25,14 @@ Route::group([], function () {
             Route::get('{user}/delete', [UserController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('absensi-pegawai')->as('pegawai.presence.')->group(function () {
-            Route::get('/', [PegawaiPresensiController::class, 'index'])->name('index');
-            Route::get('create', [PegawaiPresensiController::class, 'create'])->name('create');
+        Route::prefix('presensi-pegawai')->as('pegawai.presence.')->group(function () {
+            Route::get('/{presence}', [PegawaiPresensiController::class, 'index'])->name('index');
         });
 
         Route::prefix('presensi')->as('presence.')->group(function () {
             Route::get('/', [PresensiController::class, 'index'])->name('index');
             Route::get('create', [PresensiController::class, 'create'])->name('create');
+            Route::post('/', [PresensiController::class, 'store'])->name('store');
         });
     });
 });
