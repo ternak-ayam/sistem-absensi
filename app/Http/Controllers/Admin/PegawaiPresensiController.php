@@ -3,35 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PegawaiPresence;
 use App\Models\Presence;
 use App\Models\User;
-use App\Models\PegawaiPresence;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
-class PresensiController extends Controller
+class PegawaiPresensiController extends Controller
 {
-    public function index()
+    public function index(Presence $presence)
     {
-        $presences = Presence::orderby('id', 'DESC')->paginate(10);
+        $presences = $presence->presences()->with(['user' => function ($query) {
+            $query->where('name', 'like', '%' . \request()->get('search') . '%');
+        }])->paginate(10);
 
-        return view('admin.pages.presensi.index', compact('presences'));
+        return view('admin.pages.presensi.list.index', compact('presences', 'presence'));
     }
 
     public function create()
     {
-        return view('admin.pages.presensi.create');
+        return view('admin.pages.presensi.create', [
+            'employees' => User::all()
+        ]);
     }
 
     public function store(Request $request)
     {
         $this->rules($request);
-        Presence::create(array_merge($request->all(), [
-            'code' => Str::random(64)
-        ]));
+        PegawaiPresence::create($request->all());
 
-        return redirect(route('admin.presence.index'));
+        return redirect(route('admin.presensi.index'));
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class PresensiController extends Controller
         $this->rules($request);
         $pegawaiPresence->update($request->all());
 
-        return redirect(route('admin.presence.index'));
+        return redirect(route('admin.presensi.index'));
     }
 
     public function destroy(PegawaiPresence $pegawaiPresence)
@@ -64,8 +64,10 @@ class PresensiController extends Controller
     public function rules(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:50'],
-            'valid_until' => ['required', 'string']
+            'user_id' => ['required', 'exists:users,id'],
+            'attend_at' => ['required', 'string'],
+            'out_at' => ['required', 'string'],
+            'late_in_minutes' => ['required']
         ]);
     }
 }
