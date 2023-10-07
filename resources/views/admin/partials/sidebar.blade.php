@@ -16,8 +16,8 @@
                     <i class="fas fa-user"></i> <span>Profil</span>
                 </a>
             </li>
-            <li {{ is_nav_active('absensi') }}>
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <li {{ is_nav_active('presensi') }}>
+                <a class="nav-link" href="{{ route('user.presence.index') }}">
                     <i class="fas fa-paste"></i> <span>Absensi</span>
                 </a>
             </li>

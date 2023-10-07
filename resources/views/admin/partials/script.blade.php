@@ -8,6 +8,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="{{ asset('stisla/js/stisla.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-shorten@0.3.2/dist/jquery-shorten.min.js"></script>

@@ -45,6 +45,18 @@
                                            value="{{ old('email') }}" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
+                                <div class="form-group">
+                                    <label>No. Telepon</label>
+                                    <input type="text" class="form-control" name="phone"
+                                           value="{{ old('phone') }}" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <input type="text" class="form-control" name="state"
+                                           value="{{ old('state') }}" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <div class="d-block">

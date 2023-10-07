@@ -47,6 +47,18 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
+                                    <label>No. Telepon</label>
+                                    <input type="text" class="form-control" name="phone"
+                                           value="{{ old('phone', $user->phone) }}" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <input type="text" class="form-control" name="state"
+                                           value="{{ old('state', $user->state) }}" required>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status" id="status" required>
                                         <option @if($user->status) selected @endif value="1">Aktif</option>

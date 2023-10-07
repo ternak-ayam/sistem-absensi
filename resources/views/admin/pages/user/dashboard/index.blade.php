@@ -7,7 +7,24 @@
 @endsection
 
 @section('js')
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // handle the scanned code as you like, for example:
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+        }
 
+        function onScanFailure(error) {
+            // handle scan failure, usually better to ignore and keep scanning.
+            // for example:
+            console.warn(`Code scan error = ${error}`);
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+            { fps: 10, qrbox: {width: 250, height: 250} },
+            /* verbose= */ false);
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
 @endsection
 
 @section('content')
@@ -42,56 +59,72 @@
                                 <div class="profile-widget-name">{{ $user->name }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{ $user->state }}</div></div>
                                 {{ $user->notes }}
                             </div>
-                            <div class="card-footer text-center">
-                                <a href="#" class="btn btn-icon icon-left btn-primary"><i class="fas fa-camera"></i> Scan QR Presensi</a>
+                            <div class="card-header">
+                                <h4>Scan QR Presensi</h4>
                             </div>
+                            <div id="reader" width="600px"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                            <form method="post" class="needs-validation" novalidate="">
+                            <form method="post" class="needs-validation" action="{{ route('user.update') }}">
+                                @method('PUT')
+                                @csrf
                                 <div class="card-header">
-                                    <h4>Edit Profile</h4>
+                                    <h4>Edit Profil</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>Nama Lengkap</label>
-                                            <input type="text" class="form-control" value="Ujang" required="">
-                                            <div class="invalid-feedback">
-                                                Please fill in the first name
-                                            </div>
+                                            <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" required="">
+                                            <div class="invalid-feedback"></div>
                                         </div>
                                         <div class="form-group col-md-6 col-12">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control" name="username" id="username" value="{{ $user->username }}" required="">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12">
                                             <label>Jabatan</label>
-                                            <input type="text" class="form-control" value="Maman" required="">
-                                            <div class="invalid-feedback">
-                                                Please fill in the last name
-                                            </div>
+                                            <input type="text" class="form-control" name="state" id="state" value="{{ $user->state }}" required="">
+                                            <div class="invalid-feedback"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-7 col-12">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" value="ujang@maman.com" required="">
-                                            <div class="invalid-feedback">
-                                                Please fill in the email
-                                            </div>
+                                            <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}" required="">
+                                            <div class="invalid-feedback"></div>
                                         </div>
                                         <div class="form-group col-md-5 col-12">
                                             <label>No. Telepon</label>
-                                            <input type="tel" class="form-control" value="">
+                                            <input type="tel" class="form-control" name="phone" id="phone" value="{{ $user->phone }}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="password" id="password" required="">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Password Confirmation</label>
+                                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" required="">
+                                            <div class="invalid-feedback"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <label>Catatan</label>
-                                            <textarea class="form-control" style="height: 120px">Ujang maman is a superhero name in &lt;b&gt;Indonesia&lt;/b&gt;, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with &lt;b&gt;'John Doe'&lt;/b&gt;.</textarea>
+                                            <textarea name="notes" id="notes" class="form-control" style="height: 120px">{{ $user->notes }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary">Save Changes</button>
+                                    <button class="btn btn-primary">Simpan</button>
                                 </div>
                             </form>
                         </div>

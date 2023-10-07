@@ -51,6 +51,8 @@
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>No. Telepon</th>
+                            <th>Jabatan</th>
                             <th>Catatan</th>
                             <th>Status</th>
                             <th style="width:150px">Aksi</th>
@@ -63,6 +65,8 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            <td>{{ $user->state }}</td>
                             <td>{{ $user->notes }}</td>
                             <td>{{ $user->getStatusLabel() }}</td>
                             <td>
@@ -81,7 +85,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <p class="text-center"><em>There is no record.</em></p>
                             </td>
                         </tr>
