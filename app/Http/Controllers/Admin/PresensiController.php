@@ -30,9 +30,18 @@ class PresensiController extends Controller
     {
         $this->rules($request);
 
-        Presence::create(array_merge($request->all(), [
+        $presence = Presence::create(array_merge($request->all(), [
             'code' => Str::random(64)
         ]));
+
+        $mapped = User::all()->map(function($item, $index) use ($presence) {
+            return [
+                "user_id" => $item["id"],
+                "presence_id" => $presence->id
+            ];
+        });
+
+        PegawaiPresence::insert($mapped->toArray());
 
         return redirect(route('admin.presence.index'));
     }

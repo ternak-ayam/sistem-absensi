@@ -56,7 +56,7 @@
                         <tr>
                             <td>{{ $loop->index + $presences->firstItem() }}</td>
                             <td>{{ $presence->user['name'] }}</td>
-                            <td>{{ $presence->attend_at }}</td>
+                            <td>{{ $presence->scanned_at ? $presence->scanned_at->format('F j, Y H:i') : null }}</td>
                             <td>{{ $presence->late_in_minutes }}</td>
                             <td>{{ $presence->getPresenceStatus() }}</td>
                         </tr>

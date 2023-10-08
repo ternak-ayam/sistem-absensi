@@ -18,7 +18,7 @@ class PresensiController extends Controller
     public function index(Presence $presence)
     {
         $presences = $presence->presences()->with(['user' => function ($query) {
-            $query->where('user_id', request()->user()->id)
+            $query->where('id', request()->user()->id)
                 ->where('name', 'like', '%' . \request()->get('search') . '%');
         }])->paginate(10);
 
@@ -51,11 +51,10 @@ class PresensiController extends Controller
         $user->presences()->create([
             'presence_id' => $presence->id,
             'scanned_at' => now(),
-            'type' => $presence->type,
             'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
         ]);
 
-        return redirect(route('user.presence.user.index'));
+        return redirect(route('user.presence.user.index', $presence->id));
     }
 
     public function show($id)

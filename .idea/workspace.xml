@@ -2,21 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49824847-50a9-4be7-95d3-1b2ec8c4214d" name="Changes" comment="">
-      <changelist_data name="xarthaa" email="manager.arthachan@gmail.com" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sistem-absensi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sistem-absensi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PresensiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PresensiController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/Presensi/PresensiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/Presensi/PresensiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/presensi/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/presensi/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PegawaiPresence.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PegawaiPresence.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Presence.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Presence.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/presensi/list/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/presensi/list/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/user/dashboard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/user/dashboard/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/partials/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/partials/script.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="6ff9f4c1-2e93-4704-8ce4-142baa57c961" name="Controllers" comment="" />
     <list id="4541c7f8-d6f7-4647-bc6f-e4f29a99b7da" name="Layouting" comment="" />
@@ -258,7 +251,8 @@
       <workItem from="1696455360167" duration="3492000" />
       <workItem from="1696657125812" duration="5059000" />
       <workItem from="1696662213237" duration="6923000" />
-      <workItem from="1696680923531" duration="2636000" />
+      <workItem from="1696680923531" duration="3398000" />
+      <workItem from="1696733867249" duration="2297000" />
     </task>
     <task id="LOCAL-00001" summary="User">
       <created>1695810122893</created>
@@ -393,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696667183048</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="damnnn fix lets sleep">
+      <created>1696683947536</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1696683947536</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,6 +425,7 @@
     <MESSAGE value="migrations" />
     <MESSAGE value="layouting" />
     <MESSAGE value="controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="controller" />
+    <MESSAGE value="damnnn fix lets sleep" />
+    <option name="LAST_COMMIT_MESSAGE" value="damnnn fix lets sleep" />
   </component>
 </project>

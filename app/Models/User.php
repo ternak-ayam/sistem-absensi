@@ -62,6 +62,16 @@ class User extends Authenticatable implements CanResetPassword
         return 'https://ui-avatars.com/api/?name=' . $this->name . '&background=ffa426&color=fff';
     }
 
+    public function getAttends(): int
+    {
+        return $this->presences()->whereNotNull('scanned_at')->count();
+    }
+
+    public function getNotAttends(): int
+    {
+        return $this->presences()->whereNull('scanned_at')->count();
+    }
+
     public function getStatusLabel(): string
     {
         return $this->status ? "Aktif" : "Tidak Aktif";

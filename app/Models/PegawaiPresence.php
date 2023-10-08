@@ -12,6 +12,8 @@ class PegawaiPresence extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['scanned_at'];
+
     public function getPresenceStatus(): string
     {
         return $this->scanned_at ? 'Hadir' : 'Tidak Hadir';

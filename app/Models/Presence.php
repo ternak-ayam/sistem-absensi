@@ -29,7 +29,7 @@ class Presence extends Model
 
     public function getLates(): int
     {
-        return $this->presences->where('valid_until', '<', now()->format('H:i'))->count();
+        return $this->presences()->whereTime('scanned_at', '>', $this->valid_until)->count();
     }
 
     public function presences(): HasMany
