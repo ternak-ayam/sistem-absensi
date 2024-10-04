@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->as('user.')->group(function () {
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::put('/', [UserController::class, 'update'])->name('update');
@@ -34,5 +35,5 @@ Route::middleware('auth')->as('user.')->group(function () {
     });
 });
 
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');

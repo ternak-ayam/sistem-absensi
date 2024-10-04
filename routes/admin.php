@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('loginForm');
     Route::post('login', [LoginController::class, 'login'])->name('login');
 
     Route::middleware('auth:admin')->group(function () {

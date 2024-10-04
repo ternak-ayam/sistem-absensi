@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -52,5 +53,32 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('admin.pages.auth.login');
+    }
+
+    protected function redirectTo()
+    {
+        return route('admin.dashboard');
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        return redirect()->route('admin.dashboard'); // Force redirect to admin dashboard
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout(); // Log out from admin guard
+        $request->session()->invalidate(); // Invalidate the session
+        $request->session()->regenerateToken(); // Regenerate CSRF token
+
+        return redirect()->route('admin.loginForm'); // Redirect to admin login page
     }
 }

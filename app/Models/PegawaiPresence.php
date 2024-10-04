@@ -23,4 +23,9 @@ class PegawaiPresence extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function presence(): BelongsTo
+    {
+        return $this->belongsTo(Presence::class);
+    }
 }

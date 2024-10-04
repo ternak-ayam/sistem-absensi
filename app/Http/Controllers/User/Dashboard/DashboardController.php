@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // dd(request()->user());
         return view('admin.pages.user.dashboard.index', [
             'user' => request()->user()
         ]);

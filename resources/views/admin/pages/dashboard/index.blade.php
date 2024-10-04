@@ -16,11 +16,11 @@
                 labels: [@foreach ($dates as $date) "{{ $date }}", @endforeach],
                 datasets: [{
                     label: 'Total Kehadiran',
-                    data: [@foreach ([] as $productIn) "{{ $productIn }}", @endforeach],
+                    data: [@foreach ($inPresences as $inPresence) "{{ $inPresence }}", @endforeach],
                     borderWidth: 1
                 }, {
                     label: 'Total Ketidakhadiran',
-                    data: [@foreach ([] as $productOut) "{{ $productOut }}", @endforeach],
+                    data: [@foreach ($outPresences as $outPresence) "{{ $outPresence }}", @endforeach],
                     borderWidth: 1
                 }]
             },
@@ -134,26 +134,26 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                @foreach([] as $product)
+                                @foreach($presences as $presence)
                                 <li class="media">
                                     <div class="media-body">
                                         <div
-                                            class="float-right text-primary">{{ $product->created_at->diffForHumans() }}</div>
-                                        <div class="media-title">#{{ $product->code }}</div>
-                                        <span class="text-small text-muted">{{ $product->product['name'] }}</span>
+                                            class="float-right text-primary">{{ $presence->scanned_at->diffForHumans() }}</div>
+                                        <div class="media-title">#{{ $presence->presence->title }}</div>
+                                        <span class="text-small text-muted">{{ $presence->user->name }}</span>
                                         <br>
                                         <div
-                                            class="badge badge-success text-capitalize">{{ $product->getType() }}</div>
+                                            class="badge badge-success text-capitalize">{{ $presence->getPresenceStatus() }}</div>
                                     </div>
                                 </li>
                                 @endforeach
                             </ul>
-                            <div class="text-center pt-1 pb-1">
+                            {{-- <div class="text-center pt-1 pb-1">
                                 <a href="#"
                                    class="btn btn-primary btn-lg btn-round">
                                     Lihat Semua
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
