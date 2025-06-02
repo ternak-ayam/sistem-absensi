@@ -57,13 +57,20 @@
                     </thead>
                     <tbody>
                         @forelse($presences as $presence)
-                        <tr>
-                            <td>{{ $loop->index + $presences->firstItem() }}</td>
-                            <td>{{ $presence->user['name'] }}</td>
-                            <td>{{ $presence->type }}</td>
-                            <td>{{ $presence->scanned_at }}</td>
-                            <td>{{ $presence->late_in_minutes }}</td>
-                        </tr>
+                            @php
+                                $minutes = $presence->late_in_minutes;
+                                <!-- $days = floor($minutes / 1440); -->
+                                $hours = floor(($minutes % 1440) / 60);
+                                $mins = $minutes % 60;
+                            @endphp
+                            <tr>
+                                <td>{{ $loop->index + $presences->firstItem() }}</td>
+                                <td>{{ $presence->user['name'] }}</td>
+                                <td>{{ $presence->type }}</td>
+                                <td>{{ $presence->scanned_at }}</td>
+                                <!-- <td>{{ $presence->late_in_minutes }}</td> -->
+                                <td>{{ $hours }} jam {{ $mins }} menit</td>
+                            </tr>
                         @empty
                         <tr>
                             <td colspan="6">

@@ -16,7 +16,7 @@
 
         function onScanSuccess(decodedText) {
 
-            window.location.href = route('user.presence.user.store', decodedText);
+            window.location.href = route('user.presence.user.store', {code: decodedText, type: 'in'});
 
             html5QrcodeScanner.clear();
 
