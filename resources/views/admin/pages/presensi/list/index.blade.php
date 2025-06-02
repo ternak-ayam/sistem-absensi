@@ -53,19 +53,26 @@
                     </thead>
                     <tbody>
                         @forelse($presences as $presence)
-                        <tr>
-                            <td>{{ $loop->index + $presences->firstItem() }}</td>
-                            <td>{{ $presence->user->name }}</td>
-                            <td>{{ $presence->scanned_at ? $presence->scanned_at->format('F j, Y H:i') : null }}</td>
-                            <td>{{ $presence->late_in_minutes }}</td>
-                            <td>{{ $presence->getPresenceStatus() }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="5">
-                                <p class="text-center"><em>There is no record.</em></p>
-                            </td>
-                        </tr>
+                            @php
+                                $minutes = $presence->late_in_minutes;
+                                $days = floor($minutes / 1440);
+                                $hours = floor(($minutes % 1440) / 60);
+                                $mins = $minutes % 60;
+                            @endphp
+                            <tr>
+                                <td>{{ $loop->index + $presences->firstItem() }}</td>
+                                <td>{{ $presence->user->name }}</td>
+                                <td>{{ $presence->scanned_at ? $presence->scanned_at->format('F j, Y H:i') : null }}</td>
+                                <!-- <td>{{ $presence->late_in_minutes }}</td> -->
+                                <td>{{ $hours }} jam {{ $mins }} menit</td>
+                                <td>{{ $presence->getPresenceStatus() }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5">
+                                    <p class="text-center"><em>There is no record.</em></p>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

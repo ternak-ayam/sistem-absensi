@@ -27,7 +27,7 @@ Route::middleware('auth')->as('user.')->group(function () {
 
     Route::prefix('presensi-pegawai')->as('presence.user.')->group(function () {
         Route::get('/{presence}', [PegawaiPresensiController::class, 'index'])->name('index');
-        Route::get('/{code}/create', [PegawaiPresensiController::class, 'store'])->name('store');
+        Route::get('/{code}/{type}/create', [PegawaiPresensiController::class, 'store'])->name('store');
     });
 
     Route::prefix('presensi')->as('presence.')->group(function () {

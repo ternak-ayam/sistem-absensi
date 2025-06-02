@@ -36,31 +36,33 @@ class PresensiController extends Controller
     /**
      * @throws ValidationException
      */
-    public function store(Request $request, string $code)
+    public function store(Request $request, string $code, string $type)
     {
         $user = $request->user();
 
-        $presence = Presence::where('code', $code)->first();
-    
-        if (!$presence) {
+        $presence = Presence::where('code', $code)->firstOr(function () {
             throw ValidationException::withMessages(['status' => 'QR Code Tidak Valid']);
-        }
+        });
     
         $userPresence = $user->presences()->where('presence_id', $presence->id)->first();
     
-        $late = now()->format('H:i') <= $presence->valid_until;
+        // $late = now()->format('H:i') <= $presence->valid_until;
+        if ($type == PresenceTypeEnum::IN) {
+            // $validUntil = \Carbon\Carbon::createFromFormat('H:i', $presence->valid_until);
+            $validUntil = \Carbon\Carbon::parse($presence->valid_until, 'Asia/Jakarta');
+            $diff = now()->diffInMinutes($validUntil, false);
+            $late = $diff < 0 ? abs($diff) : 0; // hanya hitung keterlambatan
+        }
+
+        $data = [
+            'scanned_at' => now(),
+            'late_in_minutes' => $late,
+        ];
     
         if ($userPresence) {
-            $userPresence->update([
-                'scanned_at' => now(),
-                'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
-            ]);
+            $userPresence->update($data);
         } else {
-            $user->presences()->create([
-                'presence_id' => $presence->id,
-                'scanned_at' => now(),
-                'late_in_minutes' => $presence->type == PresenceTypeEnum::IN ? $late : 0
-            ]);
+            $user->presences()->create(array_merge(['presence_id' => $presence->id], $data));
         }
     
         return redirect(route('user.presence.user.index', $presence->id));
